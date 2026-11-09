@@ -55,7 +55,7 @@ nav{position:sticky;top:14px;z-index:40;width:min(1180px,100% - 28px);margin:14p
 .where{display:flex;align-items:center;gap:10px;margin-top:38px;font-size:14px;color:var(--berry-2)}
 .where svg{width:18px;height:18px;color:var(--bow-d)}
 
-.mirror{position:relative;justify-self:center;width:min(440px,100%);aspect-ratio:440/560}
+.mirror{position:relative;justify-self:center;width:min(440px,100%);aspect-ratio:440/560;margin-bottom:150px}
 .mirror .frame{position:absolute;inset:0;border-radius:220px 220px 28px 28px;background:linear-gradient(160deg,#fffafb,#f6d9e1);box-shadow:0 30px 70px -30px #4b1d2d55,inset 0 0 0 1px #4b1d2d10}
 .mirror .glass{position:absolute;inset:22px;border-radius:200px 200px 14px 14px;overflow:hidden;background:var(--blush)}
 .mirror .glass img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;opacity:0;transform:scale(1.04);transition:opacity 1.2s ease,transform 6s linear}
@@ -201,7 +201,7 @@ footer.f .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wra
 .sh{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:46px}
 .sh .lede{justify-self:end}
 /* hero top card */
-.top{position:absolute;z-index:3;right:-40px;top:40%;width:250px;background:var(--milk);border-radius:22px;padding:12px;box-shadow:0 24px 50px -24px #4b1d2d66}
+.top{position:absolute;z-index:3;left:50%;transform:translateX(-50%);top:calc(100% + 44px);width:min(320px,100%);background:var(--milk);border-radius:22px;padding:12px;box-shadow:0 24px 50px -24px #4b1d2d66}
 .top .t{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--bow-d);padding:2px 4px 10px}
 .top .t div{display:flex;gap:4px}
 .top .t button{width:26px;height:26px;border-radius:50%;background:var(--petal);font-size:12px}
@@ -310,7 +310,7 @@ form .btn{justify-content:center}
 .endcta .wrap{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
 .endcta h2{font-size:clamp(44px,6vw,86px)}
 @media (max-width:900px){
- .top{right:-10px;top:auto;bottom:64px;width:230px}
+ .mirror{margin-bottom:150px}
  .sh,.occ .g,.faq .g,.book .g{grid-template-columns:1fr}
  .sh .lede{justify-self:start}
  .xg{flex-direction:column;height:auto}
