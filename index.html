@@ -384,6 +384,59 @@ form .btn{justify-content:center}
 .rnote{text-align:center;font-size:13px;opacity:.6;margin-top:18px}
 @media (max-width:900px){.rc{width:290px;padding:22px}.rev{padding:80px 0}.rnote{display:none}}
 @media (prefers-reduced-motion:reduce){.mq .tr,.rvw .tr{animation:none}.rvw{overflow-x:auto}}
+
+/* ===== mobile app layer ===== */
+.prog{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#e2738f,var(--berry));z-index:80;pointer-events:none}
+.dock{display:none}
+.book .g>*,.faq .g>*{min-width:0}
+.book .info a{overflow-wrap:anywhere}
+.dots{display:none}
+.swhint{display:none}
+@media (max-width:900px){
+ body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+ .dock{display:flex;position:fixed;z-index:55;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));justify-content:space-around;padding:8px 6px;border-radius:26px;background:#fff8faCC;-webkit-backdrop-filter:saturate(180%) blur(18px);backdrop-filter:saturate(180%) blur(18px);box-shadow:0 18px 40px -18px #4b1d2d66,inset 0 0 0 1px #ffffff99;transition:transform .45s var(--e)}
+ .dock.hide{transform:translateY(140%)}
+ .dock a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:var(--berry-2);padding:6px 0;border-radius:18px;transition:color .3s,background .3s,transform .2s}
+ .dock a svg{width:22px;height:22px;transition:transform .35s var(--e)}
+ .dock a.on{color:var(--berry);background:#f9dbe4}
+ .dock a.on svg{transform:translateY(-1px) scale(1.08)}
+ .dock a:active{transform:scale(.92)}
+ .btn:active,.add:active,.tab:active,.ol button:active,.xg a:active,.prod:active,.q button:active{transform:scale(.97)}
+ .btn,.add,.tab,.prod{transition:transform .2s var(--e),background .25s,color .25s,box-shadow .25s}
+ a,button{-webkit-tap-highlight-color:transparent}
+ /* tabs: swipeable pill bar */
+ .chips{display:flex;flex-wrap:nowrap;overflow-x:auto;margin-inline:-20px;padding:4px 20px 6px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chips .tab{flex:none;white-space:nowrap}
+ .tabs{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-20px;padding:4px 20px 6px;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,#0000,#000 20px,#000 calc(100% - 28px),#0000)}
+ .tabs::-webkit-scrollbar,.grid::-webkit-scrollbar,.ol::-webkit-scrollbar{display:none}
+ .tab{flex:none;scroll-snap-align:center;white-space:nowrap}
+ .panel{animation:pin .5s var(--e)}
+ .panel.fromL{animation-name:pinL}
+ @keyframes pin{from{opacity:0;transform:translateX(34px)}to{opacity:1;transform:none}}
+ @keyframes pinL{from{opacity:0;transform:translateX(-34px)}to{opacity:1;transform:none}}
+ .swhint{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--berry-2);margin:-20px 0 22px}
+ .swhint i{display:block;width:26px;height:2px;border-radius:2px;background:currentColor;opacity:.4;animation:sw 2.2s var(--e) infinite}
+ @keyframes sw{0%,100%{transform:translateX(0)}50%{transform:translateX(10px)}}
+ /* occasions: horizontal chips */
+ .ol{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-20px;padding:4px 20px 10px;gap:10px;scrollbar-width:none}
+ .ol li{flex:none;scroll-snap-align:start}
+ .ol button{width:auto;padding:8px 18px 8px 8px;border-radius:999px;background:#fff8fa80}
+ .ol button img{width:44px;height:44px}
+ .ol button b{font-size:17px}
+ .stage{touch-action:pan-y}
+ /* shop: swipe carousel */
+ .grid{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:-20px;padding:6px 20px 18px;scrollbar-width:none}
+ .grid .prod{flex:0 0 76%;scroll-snap-align:center}
+ .grid .prod[hidden]{display:none}
+ .dots{display:flex;justify-content:center;gap:6px;margin-top:4px}
+ .dots i{width:6px;height:6px;border-radius:6px;background:#4b1d2d33;transition:width .35s var(--e),background .35s}
+ .dots i.on{width:22px;background:var(--berry)}
+ /* bag as bottom sheet */
+ .bag{inset:auto 0 0 0;width:100%;max-height:82vh;border-radius:28px 28px 0 0;transform:translateY(105%);box-shadow:0 -30px 60px -30px #4b1d2d66}
+ .bag.on{transform:none}
+ .bag:before{content:"";display:block;width:42px;height:5px;border-radius:5px;background:#4b1d2d33;margin:10px auto 0}
+ .bag.drag{transition:none}
+}
+@media (prefers-reduced-motion:reduce){.panel{animation:none}.swhint i{animation:none}.prog{display:none}}
 </style>
 </head>
 <body>
@@ -449,6 +502,7 @@ form .btn{justify-content:center}
 <section class="svc" id="servicios">
  <div class="wrap">
   <div class="svh"><h2 class="rv">Nuestros servicios,<br>por especialidad.</h2><p class="lede rv d1">Selecciona una especialidad. El presupuesto final se confirma tras el diagnóstico, en función de tu cabello, tu piel y el resultado que buscas.</p></div>
+  <p class="swhint" aria-hidden="true"><i></i>Desliza para ver cada especialidad</p>
   <div class="tabs" role="tablist">
    <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true" data-p="p1">Peluquería y peinados</button>
    <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" data-p="p2">Tratamientos capilares</button>
@@ -620,6 +674,7 @@ form .btn{justify-content:center}
     <span class="tg">Regalo</span></div><div class="bd"><h3>Tarjeta regalo</h3><p>Válida para cualquier tratamiento o servicio del estudio</p><div class="row"><span class="pr">desde 25 €</span><button class="add" data-n="Tarjeta regalo" data-p="25">Añadir</button></div></div></article>
    <article class="prod" data-c="piel"><div class="ph"><img src="labios.jpg" alt="Exfoliante de labios"><span class="tg">Labios</span></div><div class="bd"><h3>Exfoliante de labios</h3><p>Azúcar y aceites nutritivos para unos labios suaves</p><div class="row"><span class="pr">12,90 €</span><button class="add" data-n="Exfoliante de labios" data-p="12.90">Añadir</button></div></div></article>
   </div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
   <p class="note">Tienda de ejemplo para la propuesta: productos y precios orientativos. El pedido se confirma por mensaje y se recoge en el estudio.</p>
  </div>
 </section>
@@ -662,6 +717,14 @@ form .btn{justify-content:center}
 <section class="endcta"><div class="wrap"><h2>¿Lista para tu<br>próximo look?</h2><a class="btn fill" href="#reserva">Reservar cita</a></div></section>
 <footer class="f"><div class="wrap"><span><span class="logo" style="font-size:26px;display:inline">Imatge</span> Beauty Studio · C/ Catarroja, 13 · Paiporta</span><span>Diseño web · Studio Horta</span></div></footer>
 
+<div class="prog" id="prog"></div>
+<div class="dock" id="dock" role="navigation" aria-label="Accesos rápidos">
+ <a href="#servicios" data-s="servicios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M14.5 9.5 20 4M8.1 15.9l3-3"/></svg>Servicios</a>
+ <a href="#looks" data-s="looks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.4 5.4L20 9l-4.2 3.9L17 19l-5-3-5 3 1.2-6.1L4 9l5.6-.6Z"/></svg>Looks</a>
+ <a href="#tienda" data-s="tienda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>Tienda</a>
+ <a href="#opiniones" data-s="opiniones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4Z"/></svg>Opiniones</a>
+ <a href="#reserva" data-s="reserva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Reservar</a>
+</div>
 <div class="veil" id="veil"></div>
 <aside class="bag" id="bag" aria-label="Tu bolsa" aria-hidden="true">
  <header><h3>Tu bolsa</h3><button class="x" id="bagx" aria-label="Cerrar bolsa">✕</button></header>
@@ -743,6 +806,40 @@ document.getElementById('form').addEventListener('submit',e=>{e.preventDefault()
  const msg=`Hola Imatge! Soy ${f.nombre.value} (${f.tel.value}). Me gustaría pedir cita para: ${f.servicio.value}${f.fecha.value?' el '+new Date(f.fecha.value).toLocaleDateString('es-ES'):''}. ${f.nota.value}`.trim();
  try{navigator.clipboard.writeText(msg)}catch(_){}
  s.innerHTML=`<b>Tu solicitud está lista.</b> Hemos copiado este mensaje para que lo pegues en Instagram:<br><em style="display:block;margin:10px 0">“${msg.replace(/</g,'&lt;')}”</em><a class="btn fill" href="https://ig.me/m/imatge.salonn" style="margin-top:4px">Abrir Instagram y enviar</a>`;s.classList.add('on')});
+
+// ===== mobile app layer =====
+(function(){
+ const mob=()=>innerWidth<900,vib=()=>{try{navigator.vibrate&&navigator.vibrate(8)}catch(_){}};
+ // progress + dock hide on scroll down
+ const pr=document.getElementById('prog'),dock=document.getElementById('dock');let ly=scrollY;
+ addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;pr.style.transform=`scaleX(${Math.min(1,scrollY/h)})`;
+  const d=scrollY-ly;if(Math.abs(d)>8){dock.classList.toggle('hide',d>0&&scrollY>500&&!document.getElementById('bag').classList.contains('on'));ly=scrollY}},{passive:true});
+ // dock active section
+ const links=[...dock.querySelectorAll('a')];const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('on',l.dataset.s===e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+ links.forEach(l=>{const t=document.getElementById(l.dataset.s);t&&so.observe(t);l.addEventListener('click',vib)});
+ // tabs: center active pill, direction-aware panel, swipe between panels
+ const tabs=[...document.querySelectorAll('[role=tab]')],bar=document.querySelector('.tabs');let cur=0;
+ const _open=window.openTab;window.openTab=function(id,go){const n=tabs.findIndex(t=>t.dataset.p===id);const p=document.getElementById(id);if(p){p.classList.toggle('fromL',n<cur)}cur=n;_open(id,go);
+  const t=tabs[n];if(t&&mob())bar.scrollTo({left:t.offsetLeft-(bar.clientWidth-t.offsetWidth)/2,behavior:'smooth'});vib()};
+ document.querySelectorAll('.panel').forEach(p=>{let x0=null,y0=0;p.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  p.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5){const n=Math.max(0,Math.min(tabs.length-1,cur+(dx<0?1:-1)));if(n!==cur)openTab(tabs[n].dataset.p)}})});
+ // occasions: swipe stage
+ const st=document.getElementById('stage'),ob=[...document.querySelectorAll('#ol button')];let sx=null;
+ st.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+ st.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)<50)return;const i=ob.findIndex(b=>b.getAttribute('aria-pressed')==='true');const n=(i+(dx<0?1:-1)+ob.length)%ob.length;ob[n].click();ob[n].scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});vib()});
+ ob.forEach(b=>b.addEventListener('click',vib));
+ // shop dots
+ const g=document.getElementById('grid'),dots=document.getElementById('dots');
+ function mk(){const vis=[...g.querySelectorAll('.prod:not([hidden])')];dots.innerHTML=vis.map(()=>'<i></i>').join('');g.scrollLeft=0;upd()}
+ function upd(){const vis=[...g.querySelectorAll('.prod:not([hidden])')];const c=g.scrollLeft+g.clientWidth/2;let k=0,b=1e9;vis.forEach((p,i)=>{const d=Math.abs(p.offsetLeft+p.offsetWidth/2-c);if(d<b){b=d;k=i}});[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===k))}
+ g.addEventListener('scroll',upd,{passive:true});document.querySelectorAll('[data-f]').forEach(c=>c.addEventListener('click',()=>setTimeout(mk,0)));mk();
+ document.querySelectorAll('.add').forEach(a=>a.addEventListener('click',vib));
+ // bag bottom sheet: drag down to close
+ const bag=document.getElementById('bag');let by=null;
+ bag.addEventListener('touchstart',e=>{if(!mob()||document.getElementById('bagl').scrollTop>0)return;by=e.touches[0].clientY;bag.classList.add('drag')},{passive:true});
+ bag.addEventListener('touchmove',e=>{if(by===null)return;const d=Math.max(0,e.touches[0].clientY-by);bag.style.transform=`translateY(${d}px)`},{passive:true});
+ bag.addEventListener('touchend',e=>{if(by===null)return;const d=e.changedTouches[0].clientY-by;by=null;bag.classList.remove('drag');bag.style.transform='';if(d>110)open(false)});
+})();
 </script>
 </body>
 </html>
