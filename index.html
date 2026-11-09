@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imatge Beauty Studio · Peluquería, estética y maquillaje en Paiporta</title>
+<style>
+@font-face{font-family:"Lora";src:url(Lora-Variable.ttf);font-weight:400 700}
+@font-face{font-family:"Lora";src:url(Lora-Italic-Variable.ttf);font-weight:400 700;font-style:italic}
+@font-face{font-family:"Pop";src:url(Poppins-Light.ttf);font-weight:300}
+@font-face{font-family:"Pop";src:url(Poppins-Regular.ttf);font-weight:400}
+@font-face{font-family:"Pop";src:url(Poppins-Medium.ttf);font-weight:500}
+@font-face{font-family:"Script";src:url(texgyrechorus-mediumitalic.otf)}
+:root{
+ --petal:#f9e4ea;--blush:#f1bfcd;--bow:#e2738f;--bow-d:#c9536f;--berry:#4b1d2d;--berry-2:#7a3d52;--milk:#fff8fa;--gold:#b98f55;
+ --e:cubic-bezier(.2,.8,.2,1)
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--petal);color:var(--berry);font:400 16.5px/1.65 "Pop",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+a,button{color:inherit;font:inherit;background:none;border:0;cursor:pointer;text-decoration:none}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--bow-d);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 56px);margin-inline:auto}
+h1,h2,h3{font-family:"Lora",serif;font-weight:500;letter-spacing:-.015em;line-height:1.05}
+h2{font-size:clamp(38px,4.6vw,64px)}
+.lede{font-size:18px;color:var(--berry-2);max-width:46ch}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:500;font-size:15px;transition:background .25s,color .25s,transform .25s var(--e)}
+.btn:active{transform:scale(.97)}
+.btn.fill{background:var(--berry);color:var(--milk)}
+.btn.fill:hover{background:var(--bow-d)}
+.btn.line{box-shadow:inset 0 0 0 1.5px var(--berry)}
+.btn.line:hover{background:var(--berry);color:var(--milk)}
+.ig{width:18px;height:18px;flex:none}
+
+/* NAV */
+nav{position:sticky;top:14px;z-index:40;width:min(1180px,100% - 28px);margin:14px auto 0;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 8px 8px 24px;border-radius:999px;background:#fff8facc;backdrop-filter:blur(12px);box-shadow:0 1px 0 #4b1d2d12}
+.logo{font-family:"Script";font-size:38px;line-height:1;color:var(--berry);display:flex;align-items:center;gap:8px}
+.logo svg{width:26px;height:20px}
+.nl{display:flex;gap:28px;font-size:14.5px}
+.nl a{padding:6px 0;border-bottom:1.5px solid transparent;transition:border-color .2s}
+.nl a:hover{border-color:var(--bow)}
+.bagbtn{position:relative;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--petal)}
+.bagbtn b{position:absolute;top:-2px;right:-2px;min-width:20px;height:20px;border-radius:10px;background:var(--bow-d);color:#fff;font-size:11px;display:grid;place-items:center;padding:0 5px;transform:scale(0);transition:transform .3s var(--e)}
+.bagbtn b.on{transform:scale(1)}
+.navr{display:flex;align-items:center;gap:8px}
+
+/* HERO */
+.hero{padding:70px 0 100px}
+.hero .g{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(50px,6.6vw,94px);font-weight:500}
+.hero h1 i{font-weight:400}
+.hero .lede{margin:26px 0 34px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:10px}
+.where{display:flex;align-items:center;gap:10px;margin-top:38px;font-size:14px;color:var(--berry-2)}
+.where svg{width:18px;height:18px;color:var(--bow-d)}
+
+.mirror{position:relative;justify-self:center;width:min(440px,100%);aspect-ratio:440/560}
+.mirror .frame{position:absolute;inset:0;border-radius:220px 220px 28px 28px;background:linear-gradient(160deg,#fffafb,#f6d9e1);box-shadow:0 30px 70px -30px #4b1d2d55,inset 0 0 0 1px #4b1d2d10}
+.mirror .glass{position:absolute;inset:22px;border-radius:200px 200px 14px 14px;overflow:hidden;background:var(--blush)}
+.mirror .glass img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;opacity:0;transform:scale(1.04);transition:opacity 1.2s ease,transform 6s linear}
+.mirror .glass img.on{opacity:1;transform:scale(1)}
+.mirror .glass:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,#fff0 40%,#ffffff2e 48%,#fff0 56%);pointer-events:none}
+.bulb{position:absolute;width:16px;height:16px;border-radius:50%;background:#ead2c6;box-shadow:inset 0 -2px 0 #0000001a;z-index:1;transform:translate(-50%,-50%);transition:background .4s,box-shadow .4s}
+.bulb.on{background:#fffaf0;box-shadow:0 0 0 3px #ffe7c799,0 0 22px 8px #ffcf9c88}
+.cap{position:absolute;z-index:3;left:50%;bottom:-18px;transform:translateX(-50%);background:var(--berry);color:var(--milk);padding:10px 18px;border-radius:999px;font-size:13.5px;white-space:nowrap;box-shadow:0 10px 30px -10px #4b1d2d88}
+.cap span{display:inline-block;transition:opacity .4s}
+.news{position:absolute;z-index:3;right:-30px;top:44%;width:210px;background:var(--milk);border-radius:20px;padding:14px;display:flex;gap:12px;align-items:center;box-shadow:0 20px 40px -20px #4b1d2d55}
+.news img{width:58px;height:58px;border-radius:14px;object-fit:cover;flex:none}
+.news small{display:block;font-size:12px;color:var(--bow-d)}
+.news strong{font-family:"Lora";font-weight:500;font-size:17px;line-height:1.15;display:block}
+
+/* STATEMENT */
+.stmt{padding:60px 0 130px}
+.stmt p{font-family:"Lora";font-size:clamp(28px,3.6vw,48px);line-height:1.22;max-width:34ch;letter-spacing:-.01em}
+.stmt p .w{color:#4b1d2d33;transition:color .3s}
+.stmt p .w.lit{color:var(--berry)}
+.stmt .sig{display:flex;align-items:center;gap:14px;margin-top:36px;font-size:14.5px;color:var(--berry-2)}
+
+/* SERVICES */
+.svc{background:var(--milk);border-radius:48px 48px 0 0;padding:110px 0}
+.svh{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:54px}
+.svh .lede{justify-self:end}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.tab{padding:11px 20px;border-radius:999px;font-size:15px;box-shadow:inset 0 0 0 1.5px #4b1d2d26;transition:.25s}
+.tab:hover{box-shadow:inset 0 0 0 1.5px var(--berry)}
+.tab[aria-selected=true]{background:var(--berry);color:var(--milk);box-shadow:none}
+.panel{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+.panel[hidden]{display:none}
+.panel .pic{border-radius:200px 200px 22px 22px;overflow:hidden;aspect-ratio:4/5;background:var(--blush)}
+.panel .pic img{width:100%;height:100%;object-fit:cover;animation:pin .8s var(--e)}
+@keyframes pin{from{opacity:0;transform:scale(1.05)}}
+.panel h3{font-size:34px;margin-bottom:10px}
+.panel>div>p{color:var(--berry-2);max-width:48ch;margin-bottom:22px}
+.items{list-style:none}
+.items li{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:baseline;padding:18px 0;border-top:1px solid #4b1d2d1a}
+.items li:last-child{border-bottom:1px solid #4b1d2d1a}
+.items b{font-family:"Lora";font-weight:500;font-size:20px;display:block}
+.items span{font-size:14.5px;color:var(--berry-2)}
+.items em{font-style:normal;font-size:13px;padding:5px 11px;border-radius:999px;background:var(--petal);white-space:nowrap}
+.items em.new{background:var(--bow);color:#fff}
+.panel .btn{margin-top:28px}
+
+/* WORK */
+.work{padding:120px 0}
+.workh{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px}
+.reel{display:flex;gap:16px;overflow-x:auto;padding:4px max(28px,calc((100% - 1180px)/2)) 24px;scroll-snap-type:x mandatory;scrollbar-width:none}
+.reel::-webkit-scrollbar{display:none}
+.look{flex:0 0 300px;scroll-snap-align:start}
+.look .ph{border-radius:150px 150px 18px 18px;overflow:hidden;aspect-ratio:3/4;background:var(--blush)}
+.look img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--e)}
+.look:hover img{transform:scale(1.04)}
+.look b{display:block;font-family:"Lora";font-weight:500;font-size:19px;margin-top:14px}
+.look span{font-size:14px;color:var(--berry-2)}
+.rctl{display:flex;gap:8px}
+.rctl button{width:48px;height:48px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--berry);display:grid;place-items:center;transition:.2s}
+.rctl button:hover{background:var(--berry);color:var(--milk)}
+
+/* FANTASY */
+.fan{background:var(--berry);color:var(--milk);padding:120px 0;overflow:hidden;position:relative}
+.fan .g{display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center}
+.fan h2{color:#f6dcc0}
+.fan .lede{color:#e9c9d2;margin-top:22px}
+.fan ul{list-style:none;margin-top:30px;display:grid;gap:14px}
+.fan li{display:flex;gap:14px;align-items:baseline;font-size:15.5px;color:#f3dfe5}
+.fan li:before{content:"";width:22px;height:1px;background:var(--gold);flex:none;transform:translateY(-4px)}
+.fanpics{position:relative;height:620px}
+.fanpics figure{position:absolute;overflow:hidden;border-radius:180px 180px 16px 16px;box-shadow:0 0 0 1px #b98f5566}
+.fanpics img{width:100%;height:100%;object-fit:cover}
+.fanpics .f1{width:58%;height:88%;left:0;top:0}
+.fanpics .f2{width:46%;height:66%;right:0;bottom:0;border:8px solid var(--berry)}
+.fanpics figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 18px 14px;background:linear-gradient(0deg,#4b1d2de6,#4b1d2d00);font-size:13px;color:#f6dcc0}
+
+/* SHOP */
+.shop{padding:120px 0}
+.shoph{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:40px}
+.shoph .lede{justify-self:end}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.prod{background:var(--milk);border-radius:26px;padding:12px;display:flex;flex-direction:column;transition:transform .3s var(--e)}
+.prod[hidden]{display:none}
+.prod .ph{position:relative;border-radius:18px;aspect-ratio:1;overflow:hidden;display:grid;place-items:center}
+.prod .ph img{width:100%;height:100%;object-fit:cover}
+.prod .ph svg{width:62%;height:auto}
+.prod .tg{position:absolute;top:10px;left:10px;font-size:11.5px;background:#fff;padding:4px 10px;border-radius:999px}
+.prod .bd{padding:14px 6px 4px;display:flex;flex-direction:column;flex:1}
+.prod h3{font-size:19px;line-height:1.2}
+.prod p{font-size:13.5px;color:var(--berry-2);margin:4px 0 14px}
+.prod .row{margin-top:auto;display:flex;justify-content:space-between;align-items:center}
+.prod .pr{font-family:"Lora";font-size:20px;font-weight:500}
+.add{padding:10px 16px;border-radius:999px;background:var(--petal);font-size:14px;font-weight:500;transition:.25s}
+.add:hover{background:var(--berry);color:var(--milk)}
+.add.ok{background:var(--bow);color:#fff}
+.note{margin-top:22px;font-size:13.5px;color:var(--berry-2)}
+
+/* BAG */
+.bag{position:fixed;inset:0 0 0 auto;width:min(400px,100%);z-index:60;background:var(--milk);box-shadow:-30px 0 60px -30px #4b1d2d55;transform:translateX(105%);transition:transform .45s var(--e);display:flex;flex-direction:column}
+.bag.on{transform:none}
+.veil{position:fixed;inset:0;z-index:55;background:#4b1d2d40;opacity:0;pointer-events:none;transition:opacity .3s}
+.veil.on{opacity:1;pointer-events:auto}
+.bag header{display:flex;justify-content:space-between;align-items:center;padding:24px 26px;border-bottom:1px solid #4b1d2d14}
+.bag header h3{font-size:26px}
+.bag .x{width:40px;height:40px;border-radius:50%;background:var(--petal)}
+.bag ul{list-style:none;flex:1;overflow:auto;padding:10px 26px}
+.bag li{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #4b1d2d12;font-size:15px}
+.bag li b{font-weight:500}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:50%;background:var(--petal)}
+.bag .empty{padding:40px 26px;color:var(--berry-2)}
+.bag footer{padding:22px 26px;border-top:1px solid #4b1d2d14}
+.bag .tot{display:flex;justify-content:space-between;font-family:"Lora";font-size:22px;margin-bottom:14px}
+.bag footer .btn{width:100%;justify-content:center}
+.bag footer small{display:block;text-align:center;margin-top:10px;font-size:12.5px;color:var(--berry-2)}
+
+/* WHY */
+.why{padding:30px 0 120px}
+.why .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:46px}
+.why article{background:var(--milk);border-radius:28px;padding:30px}
+.why article svg{width:40px;height:40px;color:var(--bow-d);margin-bottom:22px}
+.why h3{font-size:24px;margin-bottom:10px}
+.why p{color:var(--berry-2);font-size:15.5px}
+
+/* VISIT */
+.visit{background:var(--blush);border-radius:48px;margin:0 14px;padding:100px 0}
+.visit .g{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.visit h2{font-size:clamp(44px,5.6vw,80px)}
+.visit .lede{margin:22px 0 32px}
+.acc{display:grid;gap:12px}
+.acc a{display:flex;align-items:center;gap:16px;background:var(--milk);border-radius:22px;padding:18px 22px;transition:transform .25s var(--e)}
+.acc a:hover{transform:translateX(6px)}
+.acc img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.acc b{display:block;font-weight:500}
+.acc span{font-size:14px;color:var(--berry-2)}
+footer.f{padding:44px 0;font-size:13.5px;color:var(--berry-2)}
+footer.f .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+
+/* ===== v2 additions ===== */
+.rv{opacity:0;transform:translateY(36px);transition:opacity .9s var(--e),transform .9s var(--e)}
+.rv.in{opacity:1;transform:none}.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+.sh{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:46px}
+.sh .lede{justify-self:end}
+/* hero top card */
+.top{position:absolute;z-index:3;right:-40px;top:40%;width:250px;background:var(--milk);border-radius:22px;padding:12px;box-shadow:0 24px 50px -24px #4b1d2d66}
+.top .t{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--bow-d);padding:2px 4px 10px}
+.top .t div{display:flex;gap:4px}
+.top .t button{width:26px;height:26px;border-radius:50%;background:var(--petal);font-size:12px}
+.top .c{display:flex;gap:12px;align-items:center}
+.top img{width:62px;height:62px;border-radius:14px;object-fit:cover;flex:none}
+.top strong{font-family:"Lora";font-weight:500;font-size:18px;line-height:1.15;display:block}
+.top small{font-size:12.5px;color:var(--berry-2)}
+.top .c>*{transition:opacity .3s}
+.top .bar{height:3px;border-radius:3px;background:var(--petal);margin-top:12px;overflow:hidden}
+.top .bar i{display:block;height:100%;width:0;background:var(--bow)}
+.top .bar i.run{animation:fill 4.2s linear forwards}
+@keyframes fill{to{width:100%}}
+/* expand gallery */
+.xg{display:flex;gap:10px;height:560px}
+.xg a{position:relative;flex:1;overflow:hidden;border-radius:180px 180px 22px 22px;transition:flex .8s var(--e)}
+.xg a.on{flex:3.2}
+.xg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e)}
+.xg a.on img{transform:scale(1.04)}
+.xg a:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#4b1d2dcc 0%,#4b1d2d00 45%)}
+.xg .lb{position:absolute;z-index:2;left:22px;right:22px;bottom:20px;color:var(--milk)}
+.xg .lb b{font-family:"Lora";font-weight:500;font-size:26px;display:block;white-space:nowrap}
+.xg .lb span{display:block;font-size:14px;max-width:34ch;opacity:0;max-height:0;transition:opacity .5s .2s,max-height .5s}
+.xg a.on .lb span{opacity:.9;max-height:60px}
+.xg a:not(.on) .lb b{font-size:20px}
+/* occasions */
+.occ{padding:120px 0}
+.occ .g{display:grid;grid-template-columns:.8fr 1fr .9fr;gap:36px;align-items:center}
+.ol{list-style:none;display:grid;gap:8px}
+.ol button{width:100%;display:flex;align-items:center;gap:14px;padding:12px;border-radius:20px;text-align:left;transition:background .3s}
+.ol button img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.ol button b{font-family:"Lora";font-weight:500;font-size:19px;display:block}
+.ol button span{font-size:13px;color:var(--berry-2)}
+.ol button[aria-pressed=true]{background:var(--milk);box-shadow:0 12px 30px -18px #4b1d2d66}
+.stage{position:relative;aspect-ratio:4/5;border-radius:220px 220px 26px 26px;overflow:hidden;background:var(--blush)}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;clip-path:inset(0 0 0 0 round 0);transition:clip-path 1s var(--e)}
+.stage img.out{clip-path:inset(0 0 100% 0)}
+.det h3{font-size:34px;margin-bottom:12px}
+.det p{color:var(--berry-2);margin-bottom:22px}
+.det dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;padding:18px 0;border-top:1px solid #4b1d2d1a;border-bottom:1px solid #4b1d2d1a;margin-bottom:24px;font-size:15px}
+.det dt{color:var(--berry-2)}
+.det dd{font-weight:500}
+.det>*{transition:opacity .35s}
+/* stacked cards */
+.stack{padding:110px 0 60px}
+.stk{position:sticky;display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--milk);border-radius:34px;overflow:hidden;min-height:420px;margin-bottom:24px;box-shadow:0 -10px 40px -24px #4b1d2d55;transform-origin:center top}
+.stk .tx{padding:44px;display:flex;flex-direction:column;justify-content:center}
+.stk .n{font-size:13px;color:var(--bow-d);margin-bottom:auto;padding-bottom:30px}
+.stk h3{font-size:clamp(30px,3vw,42px);margin-bottom:14px}
+.stk p{color:var(--berry-2);max-width:42ch}
+.stk .ch{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.stk .ch span{font-size:13px;padding:6px 12px;border-radius:999px;background:var(--petal)}
+.stk .im{position:relative}
+.stk .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* steps */
+.steps{padding:120px 0}
+.tl{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:20px;padding-top:44px}
+.tl:before{content:"";position:absolute;left:0;right:0;top:12px;height:2px;background:#4b1d2d1a}
+.tl .fillb{position:absolute;left:0;top:12px;height:2px;background:var(--bow);width:0}
+.st{position:relative}
+.st:before{content:"";position:absolute;top:-38px;left:0;width:14px;height:14px;border-radius:50%;background:var(--petal);box-shadow:inset 0 0 0 2px #4b1d2d33;transition:.4s}
+.st.on:before{background:var(--bow);box-shadow:0 0 0 6px #e2738f33}
+.st small{font-size:13px;color:var(--bow-d)}
+.st h3{font-size:26px;margin:6px 0 8px}
+.st p{font-size:15px;color:var(--berry-2)}
+.st em{display:inline-block;margin-top:12px;font-style:normal;font-size:12.5px;padding:5px 11px;border-radius:999px;background:var(--milk)}
+/* arc lookbook */
+.arc{position:relative;height:250vh;background:var(--blush)}
+.arc .pin{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:12vh}
+.arc .pin .cent{text-align:center;position:relative;z-index:2}
+.arc .pin .cent .lede{margin:14px auto 0;text-align:center}
+.ring{position:absolute;left:50%;top:calc(46vh + 1400px);width:0;height:0}
+.ring figure{position:absolute;left:-120px;top:-1400px;width:240px;height:320px;transform-origin:120px 1400px;border-radius:110px 110px 16px 16px;overflow:hidden;box-shadow:0 20px 40px -20px #4b1d2d77;background:var(--petal)}
+.ring img{width:100%;height:100%;object-fit:cover}
+/* FAQ */
+.faq{padding:120px 0}
+.faq .g{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}
+.q{border-bottom:1px solid #4b1d2d1a}
+.q button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;text-align:left;font-family:"Lora";font-size:21px;font-weight:500}
+.q button i{width:34px;height:34px;border-radius:50%;background:var(--milk);display:grid;place-items:center;font-style:normal;flex:none;transition:transform .4s var(--e),background .3s}
+.q.on button i{transform:rotate(45deg);background:var(--bow);color:#fff}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--e)}
+.q.on .a{grid-template-rows:1fr}
+.q .a>div{overflow:hidden}
+.q .a p{padding-bottom:22px;color:var(--berry-2);max-width:60ch}
+/* booking */
+.book{background:var(--berry);color:var(--milk);border-radius:48px;margin:0 14px;padding:100px 0}
+.book .g{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px}
+.book h2{color:#ffe5ec}
+.book .lede{color:#f0c9d4;margin:18px 0 34px}
+.info{display:grid;gap:18px}
+.info div{border-top:1px solid #ffffff22;padding-top:14px}
+.info small{display:block;font-size:13px;color:#e9a9bb}
+.info a,.info span{font-size:16px}
+form{background:var(--milk);color:var(--berry);border-radius:30px;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+form .full{grid-column:1/-1}
+form label{display:grid;gap:6px;font-size:13.5px;font-weight:500}
+form input,form select,form textarea{font:inherit;font-size:15px;color:var(--berry);background:var(--petal);border:1.5px solid transparent;border-radius:14px;padding:13px 14px;transition:border-color .2s}
+form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--bow)}
+form [aria-invalid=true]{border-color:#c0392b}
+form .err{grid-column:1/-1;font-size:13.5px;color:#b0302a;display:none}
+form .err.on{display:block}
+form .sent{grid-column:1/-1;display:none;background:var(--petal);border-radius:16px;padding:16px;font-size:14.5px}
+form .sent.on{display:block}
+form .btn{justify-content:center}
+.endcta{padding:100px 0 40px}
+.endcta .wrap{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
+.endcta h2{font-size:clamp(44px,6vw,86px)}
+@media (max-width:900px){
+ .top{right:-10px;top:auto;bottom:64px;width:230px}
+ .sh,.occ .g,.faq .g,.book .g{grid-template-columns:1fr}
+ .sh .lede{justify-self:start}
+ .xg{flex-direction:column;height:auto}
+ .xg a{flex:none!important;height:110px;border-radius:24px}
+ .xg a.on{height:360px}
+ .stage{max-width:380px}
+ .stk{grid-template-columns:1fr;min-height:0}
+ .stk .im{height:240px;order:-1}
+ .stk .tx{padding:28px}
+ .tl{grid-template-columns:1fr;gap:34px;padding-top:0;padding-left:34px}
+ .tl:before{left:6px;right:auto;top:0;bottom:0;width:2px;height:auto}
+ .tl .fillb{left:6px;top:0;width:2px!important;height:0}
+ .st:before{top:4px;left:-34px}
+ .ring{top:calc(52vh + 900px)} .ring figure{width:160px;height:215px;left:-80px;top:-900px;transform-origin:80px 900px}
+ form{grid-template-columns:1fr;padding:24px}
+ .book{border-radius:32px;margin:0 8px;padding:70px 0}
+}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+
+@media (max-width:900px){
+ .wrap{width:calc(100% - 40px)}
+ .nl{display:none}
+ nav{padding-left:18px}
+ .logo{font-size:32px}
+ .hero{padding:40px 0 80px}
+ .hero .g{grid-template-columns:1fr;gap:56px}
+ .mirror{width:min(360px,88%)}
+ .news{right:-14px;top:auto;bottom:70px;width:190px}
+ .svh,.shoph,.panel,.fan .g,.visit .g{grid-template-columns:1fr}
+ .svh .lede,.shoph .lede{justify-self:start}
+ .panel .pic{max-width:340px}
+ .svc{padding:80px 0;border-radius:32px 32px 0 0}
+ .fanpics{height:460px}
+ .grid{grid-template-columns:1fr 1fr}
+ .why .cols{grid-template-columns:1fr}
+ .workh{flex-direction:column;align-items:start}
+ .look{flex-basis:240px}
+ .visit{border-radius:32px;margin:0 8px;padding:70px 0}
+}
+@media (max-width:480px){.grid{grid-template-columns:1fr}.btn{padding:14px 20px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Principal">
+ <a class="logo" href="#top" aria-label="Imatge, inicio">Imatge
+  <svg viewBox="0 0 26 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M13 9c-3-5-11-6-11-1s8 3 11 1Zm0 0c3-5 11-6 11-1s-8 3-11 1Zm0 0-4 10m4-10 4 10"/></svg></a>
+ <div class="nl"><a href="#servicios">Servicios</a><a href="#looks">Looks</a><a href="#tienda">Tienda</a><a href="#reserva">Reservar</a></div>
+ <div class="navr">
+  <button class="bagbtn" id="bagbtn" aria-label="Abrir bolsa"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg><b id="bagn">0</b></button>
+  <a class="btn fill" href="https://ig.me/m/imatge.salonn">Pedir cita</a>
+ </div>
+</nav>
+
+<header class="hero" id="top">
+ <div class="wrap g">
+  <div>
+   <h1>Belleza hecha con calma, <i>en Paiporta.</i></h1>
+   <p class="lede">Peluquería, estética y maquillaje en un mismo salón. Cuéntanos qué quieres y lo preparamos contigo, frente al espejo.</p>
+   <div class="cta">
+    <a class="btn fill" href="https://ig.me/m/imatge.salonn"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>Pedir cita por Instagram</a>
+    <a class="btn line" href="#servicios">Ver servicios</a>
+   </div>
+   <p class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>C/ Catarroja, 13 · Paiporta, Valencia</p>
+  </div>
+  <div class="mirror" id="mirror" aria-label="Trabajos reales del salón">
+   <div class="frame"></div>
+   <div class="glass">
+    <img src="nuria.jpg" alt="Maquillaje y peluquería para una cena de gala fallera" data-cap="Gala fallera · maquillaje y peinado">
+    <img src="invitada2.jpg" alt="Maquillaje de invitada con ojos ahumados" data-cap="Invitada de boda · maquillaje">
+    <img src="invitada1.jpg" alt="Maquillaje luminoso y ondas al agua" data-cap="Proclamación · maquillaje y ondas">
+    <img src="fantasia.jpg" alt="Maquillaje de fantasía con tocado de plumas" data-cap="Fantasía · examen final">
+   </div>
+   <div class="cap"><span id="capt">Gala fallera · maquillaje y peinado</span></div>
+   <div class="top" id="top"><div class="t"><span>Lo más pedido</span><div><button id="tp" aria-label="Anterior">‹</button><button id="tn" aria-label="Siguiente">›</button></div></div>
+ <a class="c" href="#servicios"><img id="ti" src="melena.jpg" alt=""><div><strong id="tt">Enzimoterapia capilar</strong><small id="ts">Melena lisa y con brillo</small></div></a>
+ <div class="bar"><i id="tb"></i></div></div>
+  </div>
+ </div>
+</header>
+
+<section class="stmt">
+ <div class="wrap">
+  <p id="stmt">Somos un salón de barrio con mirada de estudio. Cuidamos tu pelo, tu piel y tu mirada, y te maquillamos para los días que se recuerdan: bodas, galas falleras, proclamaciones o una cabalgata entera.</p>
+  <div class="sig"><span class="logo" style="font-size:30px">Imatge</span>Beauty Studio y Makeup, dos cuentas y un mismo equipo</div>
+ </div>
+</section>
+
+<section style="padding:20px 0 120px" id="galeria">
+ <div class="wrap">
+  <div class="sh"><h2 class="rv">Un salón, cinco formas de cuidarte.</h2><p class="lede rv d1">Pasa por encima de cada foto para descubrir lo que hacemos.</p></div>
+  <div class="xg rv" id="xg">
+   <a href="#servicios" class="on"><img src="invitada4.jpg" alt="" style="object-position:center 20%"><div class="lb"><b>Recogidos</b><span>Ondas, semirecogidos y peinados que aguantan toda la fiesta.</span></div></a>
+   <a href="#servicios"><img src="invitada2.jpg" alt="" style="object-position:center 25%"><div class="lb"><b>Maquillaje</b><span>Invitadas, falleras y días especiales.</span></div></a>
+   <a href="#servicios"><img src="melena_rosa.jpg" alt=""><div class="lb"><b>Melenas</b><span>Enzimoterapia y spa capilar para un pelo con brillo.</span></div></a>
+   <a href="#servicios"><img src="unas_milky.jpg" alt=""><div class="lb"><b>Uñas</b><span>Manicura en el tono de la temporada, Milky Pink.</span></div></a>
+   <a href="#servicios"><img src="facial.jpg" alt=""><div class="lb"><b>Piel</b><span>Glass Skin, Dermapen y tratamientos a medida.</span></div></a>
+  </div>
+ </div>
+</section>
+<section class="svc" id="servicios">
+ <div class="wrap">
+  <div class="svh"><h2 class="rv">Todo lo que hacemos,<br>en un solo sitio.</h2><p class="lede rv d1">Elige una categoría. El precio exacto te lo damos al reservar, según tu pelo, tu piel y lo que necesites.</p></div>
+  <div class="tabs" role="tablist">
+   <button class="tab" role="tab" aria-selected="true" data-p="p1">Peluquería</button>
+   <button class="tab" role="tab" aria-selected="false" data-p="p2">Estética facial</button>
+   <button class="tab" role="tab" aria-selected="false" data-p="p3">Maquillaje</button>
+   <button class="tab" role="tab" aria-selected="false" data-p="p4">Cejas y uñas</button>
+  </div>
+
+  <div class="panel" id="p1" role="tabpanel">
+   <div class="pic"><img src="melena.jpg" alt="Melena lisa y brillante"></div>
+   <div><h3>Peluquería y tratamientos capilares</h3><p>Cortes, recogidos y tratamientos para devolver al pelo la hidratación y el brillo que pierde con el sol y las planchas.</p>
+    <ul class="items">
+     <li><div><b>Enzimoterapia capilar</b><span>Melena lisa, suave y con brillo sin perder movimiento</span></div><em>Destacado</em></li>
+     <li><div><b>Spa capilar</b><span>Chute de hidratación para el pelo seco o apagado</span></div><em>Hidratación</em></li>
+     <li><div><b>Spa capilar junior</b><span>Un ratito de relax pensado para los más peques</span></div><em>Para peques</em></li>
+     <li><div><b>Recogidos y peinados</b><span>Ondas, semirecogidos y peinados para eventos</span></div><em>Eventos</em></li>
+    </ul>
+    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Pedir cita de peluquería</a></div>
+  </div>
+
+  <div class="panel" id="p2" role="tabpanel" hidden>
+   <div class="pic"><img src="mascarilla.jpg" alt="Mascarilla facial"></div>
+   <div><h3>Estética facial</h3><p>Primero miramos qué necesita tu piel y después elegimos el tratamiento. Nada de protocolos iguales para todas.</p>
+    <ul class="items">
+     <li><div><b>Glass Skin</b><span>Piel jugosa y luminosa, inspirada en la rutina coreana</span></div><em class="new">Novedad</em></li>
+     <li><div><b>Dermapen</b><span>Estimula la renovación de la piel, ahora con nuevo cóctel</span></div><em>Renovación</em></li>
+     <li><div><b>Dermapen de labios</b><span>Labios más hidratados, suaves y con mejor aspecto</span></div><em>Labios</em></li>
+     <li><div><b>Exosomas y regeneración celular</b><span>Para pieles que necesitan reparación profunda</span></div><em>Regeneración</em></li>
+     <li><div><b>Tratamiento antiedad</b><span>Hidratación, firmeza y luminosidad</span></div><em>Firmeza</em></li>
+    </ul>
+    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Pedir valoración de piel</a></div>
+  </div>
+
+  <div class="panel" id="p3" role="tabpanel" hidden>
+   <div class="pic"><img src="invitada4.jpg" alt="Maquillaje y peinado para evento"></div>
+   <div><h3>Maquillaje profesional</h3><p>Pieles trabajadas, miradas marcadas y looks que aguantan toda la noche. También peinado, para llegar lista de una sola vez.</p>
+    <ul class="items">
+     <li><div><b>Invitadas de boda</b><span>Look elegante y favorecedor, con o sin peinado</span></div><em>Eventos</em></li>
+     <li><div><b>Falleras y galas</b><span>Cenas de gala, nombramientos y proclamaciones</span></div><em>Fallas</em></li>
+     <li><div><b>Maquillaje de día especial</b><span>Comuniones, bautizos, fiestas y sesiones de fotos</span></div><em>Celebraciones</em></li>
+     <li><div><b>Fantasía y caracterización</b><span>Cabalgatas, teatro, carnaval y proyectos creativos</span></div><em>Creativo</em></li>
+    </ul>
+    <a class="btn fill" href="https://ig.me/m/imatge.makeup">Reservar maquillaje</a></div>
+  </div>
+
+  <div class="panel" id="p4" role="tabpanel" hidden>
+   <div class="pic"><img src="unas_milky.jpg" alt="Uña en tono Milky Pink"></div>
+   <div><h3>Cejas, mirada y uñas</h3><p>Pequeños detalles que cambian la cara entera.</p>
+    <ul class="items">
+     <li><div><b>Diseño de cejas</b><span>Forma estudiada para tu rostro</span></div><em>Mirada</em></li>
+     <li><div><b>Extensiones de pestañas</b><span>Mirada espectacular sin máscara</span></div><em class="new">Muy pronto</em></li>
+     <li><div><b>Manicura</b><span>Este año, el tono que más piden es Milky Pink</span></div><em>Uñitas</em></li>
+    </ul>
+    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Pedir cita</a></div>
+  </div>
+ </div>
+</section>
+
+<section class="occ" id="looks">
+ <div class="wrap">
+  <div class="sh"><h2 class="rv">Elige tu ocasión.</h2><p class="lede rv d1">Cada evento pide un look distinto. Elige el tuyo y mira cómo lo hemos resuelto para otras clientas.</p></div>
+  <div class="g">
+   <ul class="ol rv" id="ol">
+    <li><button aria-pressed="true" data-i="0"><img src="invitada2.jpg" alt=""><div><b>Boda</b><span>Invitada</span></div></button></li>
+    <li><button aria-pressed="false" data-i="1"><img src="nuria.jpg" alt=""><div><b>Fallas</b><span>Cena de gala</span></div></button></li>
+    <li><button aria-pressed="false" data-i="2"><img src="invitada1.jpg" alt=""><div><b>Proclamación</b><span>Día de emoción</span></div></button></li>
+    <li><button aria-pressed="false" data-i="3"><img src="fantasia.jpg" alt=""><div><b>Fantasía</b><span>Caracterización</span></div></button></li>
+   </ul>
+   <div class="stage rv d1" id="stage"><img src="invitada2.jpg" alt="Look de invitada de boda"></div>
+   <div class="det rv d2" id="det">
+    <h3 id="oh">Invitada de boda</h3>
+    <p id="op">Ojos ahumados suaves, piel luminosa y un recogido bajo con mechones sueltos. Elegante y favorecedor de la ceremonia al baile.</p>
+    <dl><dt>Servicio</dt><dd id="os">Maquillaje y recogido</dd><dt>Ideal para</dt><dd id="oi">Bodas, comuniones y bautizos</dd><dt>Reserva</dt><dd id="or">Con 2–3 semanas de antelación</dd></dl>
+    <a class="btn fill" href="#reserva">Quiero este look</a>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="stack" id="porque">
+ <div class="wrap">
+  <div class="sh"><h2 class="rv">Por qué vuelven.</h2><p class="lede rv d1">Cuatro razones por las que nuestras clientas repiten.</p></div>
+  <article class="stk" style="top:100px"><div class="tx"><span class="n">1 de 4</span><h3>Primero, el espejo</h3><p>Antes de empezar hablamos de lo que quieres y de lo que necesita tu pelo o tu piel. Sales sabiendo qué te hemos hecho y por qué.</p><div class="ch"><span>Valoración</span><span>Sin prisas</span><span>Plan claro</span></div></div><div class="im"><img src="invitada3.jpg" alt=""></div></article>
+  <article class="stk" style="top:124px"><div class="tx"><span class="n">2 de 4</span><h3>Todo en un mismo sitio</h3><p>Pelo, piel, cejas, uñas y maquillaje con el mismo equipo. Para un evento, llegas una vez y sales lista.</p><div class="ch"><span>Peluquería</span><span>Estética</span><span>Makeup</span></div></div><div class="im"><img src="invitada4.jpg" alt=""></div></article>
+  <article class="stk" style="top:148px"><div class="tx"><span class="n">3 de 4</span><h3>Productos que usamos de verdad</h3><p>Trabajamos con cosmética profesional como DR.NL y te explicamos cómo seguir el cuidado en casa.</p><div class="ch"><span>DR.NL</span><span>Rutina en casa</span><span>Consejo</span></div></div><div class="im"><img src="drnl.jpg" alt=""></div></article>
+  <article class="stk" style="top:172px"><div class="tx"><span class="n">4 de 4</span><h3>También para las peques</h3><p>Con el spa capilar junior, las más pequeñas tienen su propio momento de relax mientras tú te cuidas.</p><div class="ch"><span>Spa junior</span><span>Para regalar</span></div></div><div class="im"><img src="melena.jpg" alt=""></div></article>
+ </div>
+</section>
+<section class="fan">
+ <div class="wrap g">
+  <div>
+   <h2>Cuando el maquillaje se convierte en personaje.</h2>
+   <p class="lede">Formación en fantasía y caracterización, y semanas de trabajo detrás de cada pieza: vestuario, tocado, maquillaje y peluquería pensados como un todo.</p>
+   <ul>
+    <li>Caracterización de los personajes de la cabalgata de Reyes</li>
+    <li>Fantasía con tocados de plumas y pedrería</li>
+    <li>Proyectos para teatro, carnaval y sesiones de fotos</li>
+   </ul>
+   <a class="btn" style="background:#f6dcc0;color:var(--berry);margin-top:34px" href="https://ig.me/m/imatge.makeup">Contar mi proyecto</a>
+  </div>
+  <div class="fanpics">
+   <figure class="f1"><img src="fantasia2.jpg" alt="Maquillaje de fantasía veneciana"><figcaption>Fantasía veneciana</figcaption></figure>
+   <figure class="f2"><img src="cabalgata.jpg" alt="Caracterización para la cabalgata de Reyes"><figcaption>Cabalgata de Reyes</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section class="steps" id="visita-pasos">
+ <div class="wrap">
+  <div class="sh"><h2 class="rv">Tu visita, paso a paso.</h2><p class="lede rv d1">Sin prisas y sin sorpresas. Así es una cita en Imatge.</p></div>
+  <div class="tl" id="tl"><span class="fillb" id="fb"></span>
+   <div class="st"><small>Paso 1</small><h3>Escríbenos</h3><p>Cuéntanos por mensaje qué te quieres hacer y te damos día y hora.</p><em>2 minutos</em></div>
+   <div class="st"><small>Paso 2</small><h3>Valoramos</h3><p>Frente al espejo vemos tu pelo o tu piel y acordamos el resultado y el precio.</p><em>10 minutos</em></div>
+   <div class="st"><small>Paso 3</small><h3>Te cuidamos</h3><p>Nos ponemos manos a la obra mientras tú te relajas.</p><em>Según el servicio</em></div>
+   <div class="st"><small>Paso 4</small><h3>Sigue en casa</h3><p>Te vas con consejos y, si quieres, los productos para mantener el resultado.</p><em>5 minutos</em></div>
+  </div>
+ </div>
+</section>
+<section class="arc" id="lookbook">
+ <div class="pin">
+  <div class="cent"><h2>Recién salidas del salón.</h2><p class="lede">Baja despacio para ir pasando los últimos looks.</p><a class="btn fill" href="#reserva" style="margin-top:22px">Reservar mi look</a></div>
+  <div class="ring" id="ring"><figure><img src="nuria.jpg" alt=""></figure><figure><img src="invitada2.jpg" alt=""></figure><figure><img src="fantasia.jpg" alt=""></figure><figure><img src="invitada1.jpg" alt=""></figure><figure><img src="invitada3.jpg" alt=""></figure><figure><img src="fantasia2.jpg" alt=""></figure><figure><img src="invitada4.jpg" alt=""></figure><figure><img src="cabalgata.jpg" alt=""></figure><figure><img src="nuria.jpg" alt=""></figure><figure><img src="invitada2.jpg" alt=""></figure><figure><img src="fantasia.jpg" alt=""></figure><figure><img src="invitada1.jpg" alt=""></figure><figure><img src="invitada3.jpg" alt=""></figure><figure><img src="fantasia2.jpg" alt=""></figure><figure><img src="invitada4.jpg" alt=""></figure><figure><img src="cabalgata.jpg" alt=""></figure></div>
+ </div>
+</section>
+<section class="shop" id="tienda">
+ <div class="wrap">
+  <div class="shoph"><h2 class="rv">La tienda de Imatge.</h2><p class="lede rv d1">Lo que usamos en cabina y los detalles que tenemos en el salón, ahora también para comprar online y recoger en Paiporta.</p></div>
+  <div class="chips" role="group" aria-label="Filtrar productos">
+   <button class="tab" aria-pressed="true" data-f="all">Todo</button>
+   <button class="tab" aria-pressed="false" data-f="piel">Cuidado de la piel</button>
+   <button class="tab" aria-pressed="false" data-f="perf">Perfumes árabes</button>
+   <button class="tab" aria-pressed="false" data-f="acc">Accesorios y regalos</button>
+  </div>
+  <div class="grid" id="grid">
+   <article class="prod" data-c="piel"><div class="ph" style="background:#fff"><img src="drnl.jpg" alt="Crema y sérum DR.NL" style="object-position:20% 60%"><span class="tg">Usado en cabina</span></div><div class="bd"><h3>Ceramide 4% Cream</h3><p>DR.NL · crema que repara y refuerza la barrera de la piel</p><div class="row"><span class="pr">29,90 €</span><button class="add" data-n="Ceramide 4% Cream" data-p="29.90">Añadir</button></div></div></article>
+   <article class="prod" data-c="piel"><div class="ph" style="background:#fff"><img src="drnl.jpg" alt="Sérum DR.NL" style="object-position:38% 82%;transform:scale(1.6)"><span class="tg">Usado en cabina</span></div><div class="bd"><h3>Firming Serum</h3><p>DR.NL · pantenol, ácido hialurónico y niacinamida</p><div class="row"><span class="pr">34,90 €</span><button class="add" data-n="Firming Serum" data-p="34.90">Añadir</button></div></div></article>
+   <article class="prod" data-c="perf"><div class="ph" style="background:linear-gradient(160deg,#f6d6df,#e9a9bb)">
+    <svg viewBox="0 0 120 150" aria-hidden="true"><rect x="50" y="8" width="20" height="16" rx="3" fill="#b98f55"/><rect x="54" y="22" width="12" height="10" fill="#d8b47c"/><path d="M60 32 92 62 60 142 28 62Z" fill="#fff8fa" opacity=".9"/><path d="M60 32 92 62 60 142Z" fill="#f1bfcd"/><path d="M60 48 80 66 60 120 40 66Z" fill="#e2738f" opacity=".55"/></svg>
+    <span class="tg">Perfume árabe</span></div><div class="bd"><h3>Rosa y oud</h3><p>Eau de parfum · rosa de Taif con fondo de oud</p><div class="row"><span class="pr">39,00 €</span><button class="add" data-n="Perfume Rosa y oud" data-p="39">Añadir</button></div></div></article>
+   <article class="prod" data-c="perf"><div class="ph" style="background:linear-gradient(160deg,#f3e2cf,#d9b88f)">
+    <svg viewBox="0 0 120 150" aria-hidden="true"><circle cx="60" cy="14" r="10" fill="#4b1d2d"/><rect x="54" y="22" width="12" height="12" fill="#b98f55"/><rect x="30" y="34" width="60" height="104" rx="26" fill="#fff8fa" opacity=".85"/><rect x="38" y="60" width="44" height="70" rx="20" fill="#c98a4b" opacity=".6"/><path d="M45 80h30M45 92h30" stroke="#b98f55" stroke-width="2"/></svg>
+    <span class="tg">Perfume árabe</span></div><div class="bd"><h3>Ámbar y vainilla</h3><p>Eau de parfum · cálido, dulce y de larga duración</p><div class="row"><span class="pr">35,00 €</span><button class="add" data-n="Perfume Ámbar y vainilla" data-p="35">Añadir</button></div></div></article>
+   <article class="prod" data-c="perf"><div class="ph" style="background:linear-gradient(160deg,#fff0f4,#f1bfcd)">
+    <svg viewBox="0 0 120 150" aria-hidden="true"><rect x="52" y="10" width="16" height="22" rx="4" fill="#e2738f"/><path d="M40 34h40l8 20v78a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8V54Z" fill="#fff8fa" opacity=".9"/><path d="M36 90h48v42a6 6 0 0 1-6 6H42a6 6 0 0 1-6-6Z" fill="#f1bfcd"/><circle cx="60" cy="72" r="9" fill="none" stroke="#b98f55" stroke-width="2"/></svg>
+    <span class="tg">Perfume árabe</span></div><div class="bd"><h3>Almizcle blanco</h3><p>Body mist · limpio, suave y muy femenino</p><div class="row"><span class="pr">19,90 €</span><button class="add" data-n="Almizcle blanco" data-p="19.90">Añadir</button></div></div></article>
+   <article class="prod" data-c="acc"><div class="ph" style="background:linear-gradient(160deg,#fde8ee,#f6cbd6)">
+    <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M60 56C46 30 14 26 16 50s32 18 44 6Z" fill="#e2738f"/><path d="M60 56c14-26 46-30 44-6S72 68 60 56Z" fill="#e2738f"/><path d="M58 58 42 104h12l6-22 6 22h12L62 58Z" fill="#c9536f"/><circle cx="60" cy="57" r="8" fill="#c9536f"/></svg>
+    <span class="tg">Accesorios</span></div><div class="bd"><h3>Lazo de satén</h3><p>Pinza con lazo para recogidos y semirecogidos</p><div class="row"><span class="pr">8,50 €</span><button class="add" data-n="Lazo de satén" data-p="8.50">Añadir</button></div></div></article>
+   <article class="prod" data-c="acc"><div class="ph" style="background:var(--berry)">
+    <svg viewBox="0 0 140 100" aria-hidden="true"><rect x="10" y="14" width="120" height="72" rx="10" fill="#f9e4ea"/><text x="70" y="56" text-anchor="middle" font-family="Script" font-size="30" fill="#4b1d2d">Imatge</text><path d="M10 66h120" stroke="#e2738f" stroke-width="4"/></svg>
+    <span class="tg">Regalo</span></div><div class="bd"><h3>Tarjeta regalo</h3><p>Para un tratamiento, un maquillaje o lo que ella elija</p><div class="row"><span class="pr">desde 25 €</span><button class="add" data-n="Tarjeta regalo" data-p="25">Añadir</button></div></div></article>
+   <article class="prod" data-c="piel"><div class="ph"><img src="labios.jpg" alt="Exfoliante de labios"><span class="tg">Labios</span></div><div class="bd"><h3>Exfoliante de labios</h3><p>Azúcar y aceites para unos labios suaves</p><div class="row"><span class="pr">12,90 €</span><button class="add" data-n="Exfoliante de labios" data-p="12.90">Añadir</button></div></div></article>
+  </div>
+  <p class="note">Tienda de ejemplo para la propuesta: productos y precios orientativos. El pedido se confirma por mensaje y se recoge en el salón.</p>
+ </div>
+</section>
+
+<section class="faq" id="faq">
+ <div class="wrap g">
+  <div><h2 class="rv">Preguntas frecuentes.</h2><p class="lede rv d1" style="margin:18px 0 26px">¿No encuentras lo que buscas? Escríbenos y te respondemos.</p><a class="btn line rv d2" href="https://ig.me/m/imatge.salonn">Escribir al salón</a></div>
+  <div id="faql">
+   <div class="q on"><button aria-expanded="true">¿Cómo pido cita?<i>+</i></button><div class="a"><div><p>Por mensaje directo en Instagram o con el formulario de esta web. Te respondemos con día y hora disponibles.</p></div></div></div>
+   <div class="q"><button aria-expanded="false">¿Hacéis maquillaje y peinado a la vez?<i>+</i></button><div class="a"><div><p>Sí. Para bodas, galas falleras y eventos lo más cómodo es reservar los dos servicios juntos y salir lista de una vez.</p></div></div></div>
+   <div class="q"><button aria-expanded="false">¿Con cuánta antelación reservo para un evento?<i>+</i></button><div class="a"><div><p>Para fechas señaladas, como bodas o la semana fallera, te recomendamos reservar con dos o tres semanas de margen.</p></div></div></div>
+   <div class="q"><button aria-expanded="false">¿Qué tratamiento facial me conviene?<i>+</i></button><div class="a"><div><p>Depende de tu piel. En la primera visita la valoramos y te recomendamos el tratamiento más adecuado, sea Glass Skin, Dermapen u otro.</p></div></div></div>
+   <div class="q"><button aria-expanded="false">¿Tenéis servicios para niñas?<i>+</i></button><div class="a"><div><p>Sí, el spa capilar junior, un ratito de relax pensado para las más pequeñas.</p></div></div></div>
+  </div>
+ </div>
+</section>
+<section class="book" id="reserva">
+ <div class="wrap g">
+  <div>
+   <h2 class="rv">Reserva tu cita.</h2>
+   <p class="lede rv d1">Rellena la solicitud y te preparamos el mensaje para enviarlo por Instagram. Te confirmamos día y hora.</p>
+   <div class="info rv d2">
+    <div><small>Dónde estamos</small><a href="https://www.google.com/maps/search/?api=1&query=Calle+Catarroja+13+Paiporta">C/ Catarroja, 13 · 46200 Paiporta</a></div>
+    <div><small>Peluquería y estética</small><a href="https://instagram.com/imatge.salonn">@imatge.salonn</a></div>
+    <div><small>Maquillaje</small><a href="https://instagram.com/imatge.makeup">@imatge.makeup</a></div>
+   </div>
+  </div>
+  <form id="form" novalidate class="rv d1">
+   <label>Nombre *<input name="nombre" autocomplete="name" required></label>
+   <label>Teléfono *<input name="tel" type="tel" autocomplete="tel" required></label>
+   <label>Servicio *<select name="servicio" required><option value="">Elige un servicio</option><option>Peluquería</option><option>Tratamiento capilar</option><option>Estética facial</option><option>Maquillaje</option><option>Maquillaje y peinado</option><option>Cejas</option><option>Uñas</option><option>Fantasía o caracterización</option></select></label>
+   <label>Fecha preferida<input name="fecha" type="date"></label>
+   <label class="full">¿Algo que debamos saber?<textarea name="nota" rows="3" placeholder="Ocasión, hora a la que tienes que estar lista, alergias…"></textarea></label>
+   <p class="err" id="err">Rellena tu nombre, teléfono y el servicio que quieres.</p>
+   <div class="sent" id="sent"></div>
+   <button class="btn fill full" type="submit">Preparar mi solicitud</button>
+  </form>
+ </div>
+</section>
+<section class="endcta"><div class="wrap"><h2>¿Lista para tu<br>próximo look?</h2><a class="btn fill" href="#reserva">Reservar cita</a></div></section>
+<footer class="f"><div class="wrap"><span><span class="logo" style="font-size:26px;display:inline">Imatge</span> Beauty Studio · C/ Catarroja, 13 · Paiporta</span><span>Diseño web · Studio Horta</span></div></footer>
+
+<div class="veil" id="veil"></div>
+<aside class="bag" id="bag" aria-label="Tu bolsa" aria-hidden="true">
+ <header><h3>Tu bolsa</h3><button class="x" id="bagx" aria-label="Cerrar bolsa">✕</button></header>
+ <ul id="bagl"></ul>
+ <footer><div class="tot"><span>Total</span><span id="bagt">0,00 €</span></div><a class="btn fill" id="bago" href="https://ig.me/m/imatge.salonn">Enviar pedido por mensaje</a><small>Pagas y recoges en el salón</small></footer>
+</aside>
+
+<script>
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// mirror bulbs + slideshow
+(function(){const m=document.getElementById('mirror');const N=13;const bulbs=[];
+ function place(){bulbs.forEach(b=>b.remove());bulbs.length=0;const w=m.clientWidth,h=m.clientHeight,r=w/2-6;
+  for(let i=0;i<N;i++){const a=Math.PI+(Math.PI*i/(N-1));const b=document.createElement('i');b.className='bulb';b.style.left=(w/2+r*Math.cos(a))+'px';b.style.top=(w/2+r*Math.sin(a)+2)+'px';m.appendChild(b);bulbs.push(b)}
+  [.55,.75,.92].forEach(f=>{[6,w-6].forEach(x=>{const b=document.createElement('i');b.className='bulb';b.style.left=x+'px';b.style.top=(h*f)+'px';m.appendChild(b);bulbs.push(b)})})}
+ place();addEventListener('resize',place);
+ const order=bulbs.map((b,i)=>i);
+ order.forEach((i,k)=>setTimeout(()=>bulbs[i]&&bulbs[i].classList.add('on'),RM?0:200+k*70));
+ const imgs=[...m.querySelectorAll('.glass img')],cap=document.getElementById('capt');let k=0;
+ setTimeout(()=>imgs[0].classList.add('on'),RM?0:600);
+ if(!RM)setInterval(()=>{imgs[k].classList.remove('on');k=(k+1)%imgs.length;imgs[k].classList.add('on');cap.style.opacity=0;setTimeout(()=>{cap.textContent=imgs[k].dataset.cap;cap.style.opacity=1},400)},4200);
+})();
+// statement scroll reveal
+(function(){const p=document.getElementById('stmt');p.innerHTML=p.textContent.split(' ').map(w=>'<span class="w">'+w+'</span>').join(' ');const ws=[...p.querySelectorAll('.w')];
+ function u(){const r=p.getBoundingClientRect();const k=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));const n=Math.round(k*ws.length);ws.forEach((w,i)=>w.classList.toggle('lit',RM||i<n))}
+ addEventListener('scroll',u,{passive:true});u()})();
+// tabs
+document.querySelectorAll('[role=tab]').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('[role=tab]').forEach(x=>x.setAttribute('aria-selected',x===t));document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==t.dataset.p)}));
+
+// shop filter
+document.querySelectorAll('[data-f]').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('[data-f]').forEach(x=>x.setAttribute('aria-pressed',x===c));document.querySelectorAll('.prod').forEach(p=>p.hidden=!(c.dataset.f==='all'||p.dataset.c===c.dataset.f))}));
+// bag
+const cart={};const fmt=n=>n.toFixed(2).replace('.',',')+' €';const bag=document.getElementById('bag'),veil=document.getElementById('veil');
+function open(o){bag.classList.toggle('on',o);veil.classList.toggle('on',o);bag.setAttribute('aria-hidden',!o)}
+function render(){const l=document.getElementById('bagl');const ks=Object.keys(cart);let tot=0,n=0;
+ l.innerHTML=ks.length?ks.map(k=>{const it=cart[k];tot+=it.p*it.q;n+=it.q;return `<li><b>${k}</b><div class="qty"><button data-k="${k}" data-d="-1" aria-label="Quitar uno">−</button>${it.q}<button data-k="${k}" data-d="1" aria-label="Añadir uno">+</button></div><span>${fmt(it.p*it.q)}</span></li>`}).join(''):'<p class="empty">Tu bolsa está vacía. Añade algo de la tienda para verlo aquí.</p>';
+ document.getElementById('bagt').textContent=fmt(tot);const b=document.getElementById('bagn');b.textContent=n;b.classList.toggle('on',n>0);
+ const msg='Hola Imatge! Me gustaría pedir: '+ks.map(k=>cart[k].q+'x '+k).join(', ');document.getElementById('bago').href='https://ig.me/m/imatge.salonn';document.getElementById('bago').title=msg;
+ l.querySelectorAll('button').forEach(x=>x.onclick=()=>{const it=cart[x.dataset.k];it.q+=+x.dataset.d;if(it.q<=0)delete cart[x.dataset.k];render()})}
+document.querySelectorAll('.add').forEach(a=>a.addEventListener('click',()=>{const k=a.dataset.n;cart[k]=cart[k]||{p:+a.dataset.p,q:0};cart[k].q++;render();a.textContent='Añadido';a.classList.add('ok');setTimeout(()=>{a.textContent='Añadir';a.classList.remove('ok')},1300)}));
+document.getElementById('bagbtn').onclick=()=>open(true);document.getElementById('bagx').onclick=()=>open(false);veil.onclick=()=>open(false);addEventListener('keydown',e=>{if(e.key==='Escape')open(false)});
+render();
+
+// ===== v2 =====
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+// hero top card
+(function(){const D=[['melena.jpg','Enzimoterapia capilar','Melena lisa y con brillo'],['facial.jpg','Glass Skin','Novedad en cabina'],['invitada2.jpg','Maquillaje de invitada','Con o sin recogido'],['unas_milky.jpg','Manicura Milky Pink','El tono de la temporada'],['melena_rosa.jpg','Spa capilar junior','Para las más peques']];
+ let i=0,t;const im=document.getElementById('ti'),tt=document.getElementById('tt'),ts=document.getElementById('ts'),bar=document.getElementById('tb');
+ function show(n){i=(n+D.length)%D.length;[im,tt,ts].forEach(e=>e.style.opacity=0);setTimeout(()=>{im.src=D[i][0];tt.textContent=D[i][1];ts.textContent=D[i][2];[im,tt,ts].forEach(e=>e.style.opacity=1)},250);bar.classList.remove('run');void bar.offsetWidth;if(!RM)bar.classList.add('run');clearTimeout(t);if(!RM)t=setTimeout(()=>show(i+1),4200)}
+ document.getElementById('tn').onclick=()=>show(i+1);document.getElementById('tp').onclick=()=>show(i-1);show(0)})();
+// expand gallery
+document.querySelectorAll('#xg a').forEach(a=>{const on=()=>{document.querySelectorAll('#xg a').forEach(x=>x.classList.remove('on'));a.classList.add('on')};a.addEventListener('mouseenter',on);a.addEventListener('focus',on);a.addEventListener('click',e=>{if(!a.classList.contains('on')){e.preventDefault();on()}})});
+// occasions
+(function(){const O=[['invitada2.jpg','Invitada de boda','Ojos ahumados suaves, piel luminosa y un recogido bajo con mechones sueltos. Elegante y favorecedor de la ceremonia al baile.','Maquillaje y recogido','Bodas, comuniones y bautizos','Con 2–3 semanas de antelación'],
+ ['nuria.jpg','Cena de gala fallera','Piel perfecta para las fotos, mirada definida y ondas con volumen. Lista para lucir la noche de la gala.','Maquillaje y peluquería','Galas, cenas y actos falleros','Antes de la semana fallera'],
+ ['invitada1.jpg','Proclamación','Un maquillaje muy especial para un día lleno de emoción: luminoso, duradero y con ondas al agua.','Maquillaje y ondas','Proclamaciones y nombramientos','Con 2–3 semanas de antelación'],
+ ['fantasia.jpg','Fantasía','Piel en acabado luminoso, ojos en tonos cálidos y dorados y labios suaves, con tocado de plumas.','Maquillaje de fantasía','Carnaval, teatro y sesiones de fotos','Cuéntanos tu proyecto']];
+ const st=document.getElementById('stage'),det=document.getElementById('det');
+ document.querySelectorAll('#ol button').forEach(b=>b.addEventListener('click',()=>{const o=O[+b.dataset.i];document.querySelectorAll('#ol button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  const old=st.querySelector('img');const n=document.createElement('img');n.src=o[0];n.alt='Look: '+o[1];n.className='out';st.appendChild(n);requestAnimationFrame(()=>requestAnimationFrame(()=>n.classList.remove('out')));setTimeout(()=>old.remove(),1000);
+  [...det.children].forEach(c=>c.style.opacity=0);setTimeout(()=>{['oh','op','os','oi','or'].forEach((id,k)=>document.getElementById(id).textContent=o[k+1]);[...det.children].forEach(c=>c.style.opacity=1)},300)}))})();
+// stacked cards scale
+const stks=[...document.querySelectorAll('.stk')];
+function stk(){stks.forEach((c,i)=>{const nx=stks[i+1];if(!nx){c.style.transform='';return}const r=nx.getBoundingClientRect(),h=c.offsetHeight;const k=Math.min(1,Math.max(0,1-(r.top-parseFloat(getComputedStyle(nx).top))/h));c.style.transform=`scale(${1-k*.05})`;c.style.filter=`brightness(${1-k*.08})`})}
+// timeline
+const tl=document.getElementById('tl'),fb=document.getElementById('fb'),sts=[...tl.querySelectorAll('.st')];
+function tlu(){const r=tl.getBoundingClientRect();const k=Math.min(1,Math.max(0,(innerHeight*.75-r.top)/(r.height+innerHeight*.2)));const mob=innerWidth<900;if(mob){fb.style.height=(k*100)+'%'}else{fb.style.width=(k*100)+'%'}sts.forEach((s,i)=>s.classList.toggle('on',k>=i/sts.length+.02))}
+// arc lookbook
+const arc=document.getElementById('lookbook'),ringFs=[...document.querySelectorAll('#ring figure')];const STEP=innerWidth<900?11:11.5;
+function arcu(){const r=arc.getBoundingClientRect();const k=Math.min(1,Math.max(0,-r.top/(arc.offsetHeight-innerHeight)));const off=-k*STEP*(ringFs.length-6);ringFs.forEach((f,i)=>{const a=(i-3.5)*STEP+off+STEP*2.5;f.style.transform=`rotate(${a}deg)`;f.style.opacity=Math.abs(a)>36?0:1})}
+addEventListener('scroll',()=>{stk();tlu();arcu()},{passive:true});addEventListener('resize',()=>{tlu();arcu()});stk();tlu();arcu();
+// FAQ
+document.querySelectorAll('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,on=q.classList.contains('on');document.querySelectorAll('.q').forEach(x=>{x.classList.remove('on');x.querySelector('button').setAttribute('aria-expanded',false)});if(!on){q.classList.add('on');b.setAttribute('aria-expanded',true)}});
+// form
+document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();const f=e.target;let ok=true;['nombre','tel','servicio'].forEach(n=>{const el=f.elements[n];const bad=!el.value.trim();el.setAttribute('aria-invalid',bad);if(bad)ok=false});
+ document.getElementById('err').classList.toggle('on',!ok);const s=document.getElementById('sent');if(!ok){s.classList.remove('on');return}
+ const msg=`Hola Imatge! Soy ${f.nombre.value} (${f.tel.value}). Me gustaría pedir cita para: ${f.servicio.value}${f.fecha.value?' el '+new Date(f.fecha.value).toLocaleDateString('es-ES'):''}. ${f.nota.value}`.trim();
+ try{navigator.clipboard.writeText(msg)}catch(_){}
+ s.innerHTML=`<b>Tu solicitud está lista.</b> Hemos copiado este mensaje para que lo pegues en Instagram:<br><em style="display:block;margin:10px 0">“${msg.replace(/</g,'&lt;')}”</em><a class="btn fill" href="https://ig.me/m/imatge.salonn" style="margin-top:4px">Abrir Instagram y enviar</a>`;s.classList.add('on')});
+</script>
+</body>
+</html>
