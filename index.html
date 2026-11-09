@@ -226,6 +226,9 @@ footer.f .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wra
 .xg .lb span{display:block;font-size:14px;max-width:34ch;opacity:0;max-height:0;transition:opacity .5s .2s,max-height .5s}
 .xg a.on .lb span{opacity:.9;max-height:60px}
 .xg a:not(.on) .lb b{font-size:20px}
+.xg .go{display:inline-block;margin-top:12px;font-style:normal;font-size:13px;letter-spacing:.04em;padding:7px 14px;border-radius:999px;background:#fff8fa;color:var(--berry);opacity:0;transform:translateY(6px);transition:.5s .25s}
+.xg a.on .go{opacity:1;transform:none}
+.xg .lb b{white-space:normal}
 /* occasions */
 .occ{padding:120px 0}
 .occ .g{display:grid;grid-template-columns:.8fr 1fr .9fr;gap:36px;align-items:center}
@@ -352,6 +355,35 @@ form .btn{justify-content:center}
 }
 @media (max-width:480px){.grid{grid-template-columns:1fr}.btn{padding:14px 20px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* marquee */
+.mq{border-block:1px solid #4b1d2d1a;padding:30px 0;overflow:hidden;background:#fff8fa}
+.mq .tr{display:flex;width:max-content;animation:mq 38s linear infinite}
+.mq:hover .tr{animation-play-state:paused}
+.mq span{font-family:"Lora";font-size:clamp(22px,2.6vw,34px);color:var(--berry);padding:0 34px;white-space:nowrap;display:flex;align-items:center;gap:34px}
+.mq span i{font-style:italic;opacity:.75}
+.mq span:after{content:"✦";font-size:14px;color:#e2738f}
+.mq b{font-family:"Poppins";font-weight:600;letter-spacing:.14em;font-size:.72em}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* reviews */
+.rev{padding:110px 0 120px;overflow:hidden}
+.revh{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+.gsum{display:flex;align-items:center;gap:16px;background:#fff8fa;border-radius:22px;padding:16px 22px;box-shadow:0 10px 30px #4b1d2d12;color:var(--berry);text-decoration:none}
+.gsum strong{font-family:"Lora";font-size:40px;font-weight:500;line-height:1}
+.gsum small{display:block;font-size:13px;opacity:.75}
+.stars{color:#f4b400;letter-spacing:2px;font-size:17px}
+.rvw{overflow:hidden;-webkit-mask:linear-gradient(90deg,#0000,#000 8%,#000 92%,#0000);mask:linear-gradient(90deg,#0000,#000 8%,#000 92%,#0000)}
+.rvw .tr{display:flex;gap:22px;width:max-content;animation:mq 60s linear infinite;padding:10px 0 20px}
+.rvw:hover .tr,.rvw:focus-within .tr{animation-play-state:paused}
+.rc{width:360px;flex:none;background:#fff8fa;border-radius:26px;padding:28px;box-shadow:0 14px 40px #4b1d2d14;display:flex;flex-direction:column;gap:14px;color:var(--berry)}
+.rc .who{display:flex;align-items:center;gap:12px}
+.rc .av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:600;font-size:19px;flex:none}
+.rc .who b{display:block;font-size:15px}.rc .who small{font-size:13px;opacity:.65}
+.rc .g{margin-left:auto;width:22px;height:22px}
+.rc p{font-size:15px;line-height:1.6;margin:0}
+.rnote{text-align:center;font-size:13px;opacity:.6;margin-top:18px}
+@media (max-width:900px){.rc{width:290px;padding:22px}.rev{padding:80px 0}.rnote{display:none}}
+@media (prefers-reduced-motion:reduce){.mq .tr,.rvw .tr{animation:none}.rvw{overflow-x:auto}}
 </style>
 </head>
 <body>
@@ -369,8 +401,8 @@ form .btn{justify-content:center}
 <header class="hero" id="top">
  <div class="wrap g">
   <div>
-   <h1>Belleza hecha con calma, <i>en Paiporta.</i></h1>
-   <p class="lede">Peluquería, estética y maquillaje en un mismo salón. Cuéntanos qué quieres y lo preparamos contigo, frente al espejo.</p>
+   <h1>Estudio de belleza integral <i>en Paiporta.</i></h1>
+   <p class="lede">Peluquería, tratamientos capilares, estética facial y maquillaje profesional en un único estudio. Cada servicio comienza con un diagnóstico personalizado.</p>
    <div class="cta">
     <a class="btn fill" href="https://ig.me/m/imatge.salonn"><svg class="ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>Pedir cita por Instagram</a>
     <a class="btn line" href="#servicios">Ver servicios</a>
@@ -383,98 +415,112 @@ form .btn{justify-content:center}
     <img src="nuria.jpg" alt="Maquillaje y peluquería para una cena de gala fallera" data-cap="Gala fallera · maquillaje y peinado">
     <img src="invitada2.jpg" alt="Maquillaje de invitada con ojos ahumados" data-cap="Invitada de boda · maquillaje">
     <img src="invitada1.jpg" alt="Maquillaje luminoso y ondas al agua" data-cap="Proclamación · maquillaje y ondas">
-    <img src="fantasia.jpg" alt="Maquillaje de fantasía con tocado de plumas" data-cap="Fantasía · examen final">
+    <img src="fantasia.jpg" alt="Maquillaje de fantasía con tocado de plumas" data-cap="Fantasía · caracterización">
    </div>
    <div class="cap"><span id="capt">Gala fallera · maquillaje y peinado</span></div>
-   <div class="top" id="top"><div class="t"><span>Lo más pedido</span><div><button id="tp" aria-label="Anterior">‹</button><button id="tn" aria-label="Siguiente">›</button></div></div>
- <a class="c" href="#servicios"><img id="ti" src="melena.jpg" alt=""><div><strong id="tt">Enzimoterapia capilar</strong><small id="ts">Melena lisa y con brillo</small></div></a>
+   <div class="top" id="topcard"><div class="t"><span>Lo más pedido</span><div><button id="tp" aria-label="Anterior">‹</button><button id="tn" aria-label="Siguiente">›</button></div></div>
+ <a class="c" href="#servicios" id="tc"><img id="ti" src="melena.jpg" alt=""><div><strong id="tt">Enzimoterapia capilar</strong><small id="ts">Melena lisa y con brillo</small></div></a>
  <div class="bar"><i id="tb"></i></div></div>
   </div>
  </div>
 </header>
 
+<div class="mq" aria-label="Especialidades y cosmética profesional"><div class="tr"><span><b>DR.NL</b></span><span><i>Glass Skin</i></span><span>Enzimoterapia capilar</span><span><i>Dermapen</i></span><span>Maquillaje de evento</span><span><i>Spa capilar</i></span><span>Caracterización</span><span><i>Milky Pink</i></span><span>Exosomas</span><span aria-hidden="true" style="display:contents"><span><b>DR.NL</b></span><span><i>Glass Skin</i></span><span>Enzimoterapia capilar</span><span><i>Dermapen</i></span><span>Maquillaje de evento</span><span><i>Spa capilar</i></span><span>Caracterización</span><span><i>Milky Pink</i></span><span>Exosomas</span></span></div></div>
+
 <section class="stmt">
  <div class="wrap">
-  <p id="stmt">Somos un salón de barrio con mirada de estudio. Cuidamos tu pelo, tu piel y tu mirada, y te maquillamos para los días que se recuerdan: bodas, galas falleras, proclamaciones o una cabalgata entera.</p>
-  <div class="sig"><span class="logo" style="font-size:30px">Imatge</span>Beauty Studio y Makeup, dos cuentas y un mismo equipo</div>
+  <p id="stmt">Imatge es un estudio de belleza integral especializado en peluquería, estética facial y maquillaje profesional. Diseñamos cada servicio a partir de un diagnóstico personalizado y acompañamos a nuestras clientas en sus momentos más importantes: bodas, galas falleras, proclamaciones y producciones de caracterización.</p>
+  <div class="sig"><span class="logo" style="font-size:30px">Imatge</span>Beauty Studio &amp; Makeup · un único equipo profesional</div>
  </div>
 </section>
 
 <section style="padding:20px 0 120px" id="galeria">
  <div class="wrap">
-  <div class="sh"><h2 class="rv">Un salón, cinco formas de cuidarte.</h2><p class="lede rv d1">Pasa por encima de cada foto para descubrir lo que hacemos.</p></div>
+  <div class="sh"><h2 class="rv">Cinco especialidades, un mismo estudio.</h2><p class="lede rv d1">Explora cada especialidad y accede directamente a sus servicios.</p></div>
   <div class="xg rv" id="xg">
-   <a href="#servicios" class="on"><img src="invitada4.jpg" alt="" style="object-position:center 20%"><div class="lb"><b>Recogidos</b><span>Ondas, semirecogidos y peinados que aguantan toda la fiesta.</span></div></a>
-   <a href="#servicios"><img src="invitada2.jpg" alt="" style="object-position:center 25%"><div class="lb"><b>Maquillaje</b><span>Invitadas, falleras y días especiales.</span></div></a>
-   <a href="#servicios"><img src="melena_rosa.jpg" alt=""><div class="lb"><b>Melenas</b><span>Enzimoterapia y spa capilar para un pelo con brillo.</span></div></a>
-   <a href="#servicios"><img src="unas_milky.jpg" alt=""><div class="lb"><b>Uñas</b><span>Manicura en el tono de la temporada, Milky Pink.</span></div></a>
-   <a href="#servicios"><img src="facial.jpg" alt=""><div class="lb"><b>Piel</b><span>Glass Skin, Dermapen y tratamientos a medida.</span></div></a>
+   <a href="#servicios" data-tab="p1" class="on"><img src="invitada4.jpg" alt="Peluquería y peinados" style="object-position:center 20%"><div class="lb"><b>Peluquería y peinados</b><span>Corte, recogidos y peinados de evento con acabado de larga duración.</span><em class="go">Ver servicios →</em></div></a>
+   <a href="#servicios" data-tab="p2"><img src="melena_rosa.jpg" alt="Tratamientos capilares" style="object-position:center"><div class="lb"><b>Tratamientos capilares</b><span>Enzimoterapia y spa capilar para recuperar brillo e hidratación.</span><em class="go">Ver servicios →</em></div></a>
+   <a href="#servicios" data-tab="p3"><img src="facial.jpg" alt="Estética facial" style="object-position:center"><div class="lb"><b>Estética facial</b><span>Glass Skin, Dermapen y protocolos personalizados según tu piel.</span><em class="go">Ver servicios →</em></div></a>
+   <a href="#servicios" data-tab="p4"><img src="invitada2.jpg" alt="Maquillaje" style="object-position:center 25%"><div class="lb"><b>Maquillaje</b><span>Maquillaje profesional para bodas, galas falleras y eventos.</span><em class="go">Ver servicios →</em></div></a>
+   <a href="#servicios" data-tab="p5"><img src="unas_milky.jpg" alt="Cejas y uñas" style="object-position:center"><div class="lb"><b>Cejas y uñas</b><span>Diseño de cejas y manicura con acabados precisos.</span><em class="go">Ver servicios →</em></div></a>
   </div>
  </div>
 </section>
 <section class="svc" id="servicios">
  <div class="wrap">
-  <div class="svh"><h2 class="rv">Todo lo que hacemos,<br>en un solo sitio.</h2><p class="lede rv d1">Elige una categoría. El precio exacto te lo damos al reservar, según tu pelo, tu piel y lo que necesites.</p></div>
+  <div class="svh"><h2 class="rv">Nuestros servicios,<br>por especialidad.</h2><p class="lede rv d1">Selecciona una especialidad. El presupuesto final se confirma tras el diagnóstico, en función de tu cabello, tu piel y el resultado que buscas.</p></div>
   <div class="tabs" role="tablist">
-   <button class="tab" role="tab" aria-selected="true" data-p="p1">Peluquería</button>
-   <button class="tab" role="tab" aria-selected="false" data-p="p2">Estética facial</button>
-   <button class="tab" role="tab" aria-selected="false" data-p="p3">Maquillaje</button>
-   <button class="tab" role="tab" aria-selected="false" data-p="p4">Cejas y uñas</button>
+   <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true" data-p="p1">Peluquería y peinados</button>
+   <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" data-p="p2">Tratamientos capilares</button>
+   <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" data-p="p3">Estética facial</button>
+   <button class="tab" role="tab" id="t4" aria-controls="p4" aria-selected="false" data-p="p4">Maquillaje</button>
+   <button class="tab" role="tab" id="t5" aria-controls="p5" aria-selected="false" data-p="p5">Cejas y uñas</button>
   </div>
 
-  <div class="panel" id="p1" role="tabpanel">
-   <div class="pic"><img src="melena.jpg" alt="Melena lisa y brillante"></div>
-   <div><h3>Peluquería y tratamientos capilares</h3><p>Cortes, recogidos y tratamientos para devolver al pelo la hidratación y el brillo que pierde con el sol y las planchas.</p>
+  <div class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+   <div class="pic"><img src="invitada3.jpg" alt="Cabello peinado para evento"></div>
+   <div><h3>Peluquería y peinados</h3><p>Corte, acabado y peinados de evento diseñados según tu tipo de cabello, la ocasión y el estilismo.</p>
     <ul class="items">
-     <li><div><b>Enzimoterapia capilar</b><span>Melena lisa, suave y con brillo sin perder movimiento</span></div><em>Destacado</em></li>
-     <li><div><b>Spa capilar</b><span>Chute de hidratación para el pelo seco o apagado</span></div><em>Hidratación</em></li>
-     <li><div><b>Spa capilar junior</b><span>Un ratito de relax pensado para los más peques</span></div><em>Para peques</em></li>
-     <li><div><b>Recogidos y peinados</b><span>Ondas, semirecogidos y peinados para eventos</span></div><em>Eventos</em></li>
+     <li><div><b>Corte y peinado</b><span>Diagnóstico, corte y acabado adaptados a tu cabello</span></div><em>Esencial</em></li>
+     <li><div><b>Recogidos y semirecogidos</b><span>Peinados de evento con fijación de larga duración</span></div><em>Eventos</em></li>
+     <li><div><b>Ondas al agua</b><span>Acabado clásico para ceremonias y proclamaciones</span></div><em>Ceremonia</em></li>
+     <li><div><b>Peinado para galas falleras</b><span>Volumen y fijación pensados para toda la noche</span></div><em>Fallas</em></li>
     </ul>
-    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Pedir cita de peluquería</a></div>
+    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Reservar peluquería</a></div>
   </div>
 
-  <div class="panel" id="p2" role="tabpanel" hidden>
-   <div class="pic"><img src="mascarilla.jpg" alt="Mascarilla facial"></div>
-   <div><h3>Estética facial</h3><p>Primero miramos qué necesita tu piel y después elegimos el tratamiento. Nada de protocolos iguales para todas.</p>
+  <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+   <div class="pic"><img src="melena.jpg" alt="Melena lisa y brillante tras enzimoterapia"></div>
+   <div><h3>Tratamientos capilares</h3><p>Tratamientos profesionales para recuperar la hidratación, el brillo y la salud del cabello dañado por el calor, el sol o los procesos químicos.</p>
     <ul class="items">
-     <li><div><b>Glass Skin</b><span>Piel jugosa y luminosa, inspirada en la rutina coreana</span></div><em class="new">Novedad</em></li>
-     <li><div><b>Dermapen</b><span>Estimula la renovación de la piel, ahora con nuevo cóctel</span></div><em>Renovación</em></li>
-     <li><div><b>Dermapen de labios</b><span>Labios más hidratados, suaves y con mejor aspecto</span></div><em>Labios</em></li>
-     <li><div><b>Exosomas y regeneración celular</b><span>Para pieles que necesitan reparación profunda</span></div><em>Regeneración</em></li>
+     <li><div><b>Enzimoterapia capilar</b><span>Alisado y nutrición profunda que aporta brillo sin restar movimiento</span></div><em>Destacado</em></li>
+     <li><div><b>Spa capilar</b><span>Hidratación intensiva para cabellos secos o deshidratados</span></div><em>Hidratación</em></li>
+     <li><div><b>Spa capilar junior</b><span>Tratamiento suave adaptado al cabello infantil</span></div><em>Infantil</em></li>
+    </ul>
+    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Reservar tratamiento</a></div>
+  </div>
+
+  <div class="panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
+   <div class="pic"><img src="mascarilla.jpg" alt="Tratamiento facial en cabina"></div>
+   <div><h3>Estética facial</h3><p>Cada tratamiento parte de un diagnóstico de la piel para diseñar un protocolo personalizado.</p>
+    <ul class="items">
+     <li><div><b>Glass Skin</b><span>Piel jugosa y luminosa, inspirada en la cosmética coreana</span></div><em class="new">Novedad</em></li>
+     <li><div><b>Dermapen</b><span>Estimula la renovación celular, ahora con un nuevo cóctel activo</span></div><em>Renovación</em></li>
+     <li><div><b>Dermapen de labios</b><span>Labios más hidratados, suaves y definidos</span></div><em>Labios</em></li>
+     <li><div><b>Exosomas y regeneración celular</b><span>Para pieles que requieren una reparación profunda</span></div><em>Regeneración</em></li>
      <li><div><b>Tratamiento antiedad</b><span>Hidratación, firmeza y luminosidad</span></div><em>Firmeza</em></li>
     </ul>
-    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Pedir valoración de piel</a></div>
+    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Solicitar diagnóstico de piel</a></div>
   </div>
 
-  <div class="panel" id="p3" role="tabpanel" hidden>
-   <div class="pic"><img src="invitada4.jpg" alt="Maquillaje y peinado para evento"></div>
-   <div><h3>Maquillaje profesional</h3><p>Pieles trabajadas, miradas marcadas y looks que aguantan toda la noche. También peinado, para llegar lista de una sola vez.</p>
+  <div class="panel" id="p4" role="tabpanel" aria-labelledby="t4" hidden>
+   <div class="pic"><img src="invitada2.jpg" alt="Maquillaje de invitada con ojos ahumados"></div>
+   <div><h3>Maquillaje profesional</h3><p>Maquillaje de alta duración para eventos, ceremonias y fotografía. Disponible en combinación con peinado.</p>
     <ul class="items">
      <li><div><b>Invitadas de boda</b><span>Look elegante y favorecedor, con o sin peinado</span></div><em>Eventos</em></li>
      <li><div><b>Falleras y galas</b><span>Cenas de gala, nombramientos y proclamaciones</span></div><em>Fallas</em></li>
-     <li><div><b>Maquillaje de día especial</b><span>Comuniones, bautizos, fiestas y sesiones de fotos</span></div><em>Celebraciones</em></li>
+     <li><div><b>Maquillaje de celebración</b><span>Comuniones, bautizos y sesiones de fotografía</span></div><em>Celebraciones</em></li>
      <li><div><b>Fantasía y caracterización</b><span>Cabalgatas, teatro, carnaval y proyectos creativos</span></div><em>Creativo</em></li>
     </ul>
     <a class="btn fill" href="https://ig.me/m/imatge.makeup">Reservar maquillaje</a></div>
   </div>
 
-  <div class="panel" id="p4" role="tabpanel" hidden>
-   <div class="pic"><img src="unas_milky.jpg" alt="Uña en tono Milky Pink"></div>
-   <div><h3>Cejas, mirada y uñas</h3><p>Pequeños detalles que cambian la cara entera.</p>
+  <div class="panel" id="p5" role="tabpanel" aria-labelledby="t5" hidden>
+   <div class="pic"><img src="unas_milky.jpg" alt="Manicura en tono Milky Pink"></div>
+   <div><h3>Cejas, pestañas y uñas</h3><p>Diseño de la mirada y manicura con acabados precisos que completan tu imagen.</p>
     <ul class="items">
-     <li><div><b>Diseño de cejas</b><span>Forma estudiada para tu rostro</span></div><em>Mirada</em></li>
-     <li><div><b>Extensiones de pestañas</b><span>Mirada espectacular sin máscara</span></div><em class="new">Muy pronto</em></li>
-     <li><div><b>Manicura</b><span>Este año, el tono que más piden es Milky Pink</span></div><em>Uñitas</em></li>
+     <li><div><b>Diseño de cejas</b><span>Forma estudiada según la estructura de tu rostro</span></div><em>Mirada</em></li>
+     <li><div><b>Extensiones de pestañas</b><span>Mirada definida sin necesidad de máscara</span></div><em class="new">Próximamente</em></li>
+     <li><div><b>Manicura</b><span>Esmaltado de temporada: el tono más solicitado es Milky Pink</span></div><em>Manicura</em></li>
     </ul>
-    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Pedir cita</a></div>
+    <a class="btn fill" href="https://ig.me/m/imatge.salonn">Reservar cita</a></div>
   </div>
  </div>
 </section>
 
 <section class="occ" id="looks">
  <div class="wrap">
-  <div class="sh"><h2 class="rv">Elige tu ocasión.</h2><p class="lede rv d1">Cada evento pide un look distinto. Elige el tuyo y mira cómo lo hemos resuelto para otras clientas.</p></div>
+  <div class="sh"><h2 class="rv">Elige tu ocasión.</h2><p class="lede rv d1">Cada evento requiere un estilismo distinto. Selecciona el tuyo y descubre la propuesta de nuestro equipo.</p></div>
   <div class="g">
    <ul class="ol rv" id="ol">
     <li><button aria-pressed="true" data-i="0"><img src="invitada2.jpg" alt=""><div><b>Boda</b><span>Invitada</span></div></button></li>
@@ -494,18 +540,26 @@ form .btn{justify-content:center}
 </section>
 <section class="stack" id="porque">
  <div class="wrap">
-  <div class="sh"><h2 class="rv">Por qué vuelven.</h2><p class="lede rv d1">Cuatro razones por las que nuestras clientas repiten.</p></div>
-  <article class="stk" style="top:100px"><div class="tx"><span class="n">1 de 4</span><h3>Primero, el espejo</h3><p>Antes de empezar hablamos de lo que quieres y de lo que necesita tu pelo o tu piel. Sales sabiendo qué te hemos hecho y por qué.</p><div class="ch"><span>Valoración</span><span>Sin prisas</span><span>Plan claro</span></div></div><div class="im"><img src="invitada3.jpg" alt=""></div></article>
-  <article class="stk" style="top:124px"><div class="tx"><span class="n">2 de 4</span><h3>Todo en un mismo sitio</h3><p>Pelo, piel, cejas, uñas y maquillaje con el mismo equipo. Para un evento, llegas una vez y sales lista.</p><div class="ch"><span>Peluquería</span><span>Estética</span><span>Makeup</span></div></div><div class="im"><img src="invitada4.jpg" alt=""></div></article>
-  <article class="stk" style="top:148px"><div class="tx"><span class="n">3 de 4</span><h3>Productos que usamos de verdad</h3><p>Trabajamos con cosmética profesional como DR.NL y te explicamos cómo seguir el cuidado en casa.</p><div class="ch"><span>DR.NL</span><span>Rutina en casa</span><span>Consejo</span></div></div><div class="im"><img src="drnl.jpg" alt=""></div></article>
-  <article class="stk" style="top:172px"><div class="tx"><span class="n">4 de 4</span><h3>También para las peques</h3><p>Con el spa capilar junior, las más pequeñas tienen su propio momento de relax mientras tú te cuidas.</p><div class="ch"><span>Spa junior</span><span>Para regalar</span></div></div><div class="im"><img src="melena.jpg" alt=""></div></article>
+  <div class="sh"><h2 class="rv">Por qué confían en nosotras.</h2><p class="lede rv d1">Los principios que guían cada uno de nuestros servicios.</p></div>
+  <article class="stk" style="top:100px"><div class="tx"><span class="n">1 de 4</span><h3>Diagnóstico previo</h3><p>Antes de empezar analizamos tu cabello o tu piel y definimos contigo el resultado. Sabrás en todo momento qué tratamiento aplicamos y por qué.</p><div class="ch"><span>Diagnóstico</span><span>Asesoramiento</span><span>Transparencia</span></div></div><div class="im"><img src="invitada3.jpg" alt=""></div></article>
+  <article class="stk" style="top:124px"><div class="tx"><span class="n">2 de 4</span><h3>Un equipo integral</h3><p>Peluquería, estética, cejas, uñas y maquillaje coordinados por un mismo equipo. Para un evento, resolvemos tu imagen completa en una única cita.</p><div class="ch"><span>Peluquería</span><span>Estética</span><span>Makeup</span></div></div><div class="im"><img src="invitada4.jpg" alt=""></div></article>
+  <article class="stk" style="top:148px"><div class="tx"><span class="n">3 de 4</span><h3>Cosmética profesional</h3><p>Trabajamos con firmas profesionales como DR.NL y te pautamos una rutina de mantenimiento para casa.</p><div class="ch"><span>DR.NL</span><span>Rutina personalizada</span><span>Seguimiento</span></div></div><div class="im"><img src="drnl.jpg" alt=""></div></article>
+  <article class="stk" style="top:172px"><div class="tx"><span class="n">4 de 4</span><h3>Atención para toda la familia</h3><p>Disponemos de spa capilar junior, un tratamiento suave adaptado al cabello infantil, y de tarjetas regalo para cualquier servicio.</p><div class="ch"><span>Spa capilar junior</span><span>Tarjeta regalo</span></div></div><div class="im"><img src="melena.jpg" alt=""></div></article>
  </div>
+</section>
+<section class="rev" id="opiniones">
+ <div class="wrap">
+  <div class="revh"><div class="sh" style="margin:0"><h2 class="rv">La opinión de nuestras clientas.</h2><p class="lede rv d1">Reseñas publicadas en nuestro perfil de Google.</p></div>
+   <a class="gsum rv d2" href="https://www.google.com/maps/place/Imatge/@39.4263006,-0.4152408,17z/data=!4m8!3m7!1s0xd604e5ef8d0a7fd:0x8d62f303d1338cf1!8m2!3d39.4263006!4d-0.4152408!9m1!1b1" target="_blank" rel="noopener"><svg width="34" height="34" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg><strong>5,0</strong><div><span class="stars">★★★★★</span><small>7 reseñas en Google</small></div></a></div>
+ </div>
+ <div class="rvw" tabindex="0" aria-label="Reseñas de clientas"><div class="tr"><article class="rc"><div class="who"><span class="av" style="background:#c9536f">A</span><div><b>Ainara V.</b><small>Hace un mes</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Un establecimiento precioso, súper cuidado y con un ambiente muy agradable. He probado varios tratamientos de estética y me han encantado. El maquillaje me gusta muchísimo, siempre consiguen que quede precioso.</p></article><article class="rc"><div class="who"><span class="av" style="background:#8e3b5a">A</span><div><b>Alejandra T.</b><small>Hace un mes</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Mi peluquería de confianza de toda la vida. Son grandes profesionales, te aconsejan, escuchan lo que quieres y consiguen que te sientas cómoda y guapísima.</p></article><article class="rc"><div class="who"><span class="av" style="background:#b98f55">J</span><div><b>José Carlos R.</b><small>Hace un mes</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>He ido varias veces a cortarme el pelo y a cosas de estética, y me ha gustado mucho el trato y el ambiente. Totalmente recomendable.</p></article><article class="rc"><div class="who"><span class="av" style="background:#e2738f">D</span><div><b>David P.</b><small>Hace un mes</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Las mejores en lo suyo, 5 de 5. Lugar acogedor y muy profesionales.</p></article><article class="rc"><div class="who"><span class="av" style="background:#6d2a44">T</span><div><b>Tere R.</b><small>Hace 5 años</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Una gran profesional, muy simpática y un local muy bonito.</p></article><article class="rc"><div class="who"><span class="av" style="background:#d48a9e">F</span><div><b>Fran</b><small>Hace 8 años</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Recomendable 100 %.</p></article><div style="display:contents" aria-hidden="true"><article class="rc"><div class="who"><span class="av" style="background:#c9536f">A</span><div><b>Ainara V.</b><small>Hace un mes</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Un establecimiento precioso, súper cuidado y con un ambiente muy agradable. He probado varios tratamientos de estética y me han encantado. El maquillaje me gusta muchísimo, siempre consiguen que quede precioso.</p></article><article class="rc"><div class="who"><span class="av" style="background:#8e3b5a">A</span><div><b>Alejandra T.</b><small>Hace un mes</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Mi peluquería de confianza de toda la vida. Son grandes profesionales, te aconsejan, escuchan lo que quieres y consiguen que te sientas cómoda y guapísima.</p></article><article class="rc"><div class="who"><span class="av" style="background:#b98f55">J</span><div><b>José Carlos R.</b><small>Hace un mes</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>He ido varias veces a cortarme el pelo y a cosas de estética, y me ha gustado mucho el trato y el ambiente. Totalmente recomendable.</p></article><article class="rc"><div class="who"><span class="av" style="background:#e2738f">D</span><div><b>David P.</b><small>Hace un mes</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Las mejores en lo suyo, 5 de 5. Lugar acogedor y muy profesionales.</p></article><article class="rc"><div class="who"><span class="av" style="background:#6d2a44">T</span><div><b>Tere R.</b><small>Hace 5 años</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Una gran profesional, muy simpática y un local muy bonito.</p></article><article class="rc"><div class="who"><span class="av" style="background:#d48a9e">F</span><div><b>Fran</b><small>Hace 8 años</small></div><svg class="g" viewBox="0 0 48 48" aria-label="Google"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg></div><div class="stars" aria-label="5 de 5 estrellas">★★★★★</div><p>Recomendable 100 %.</p></article></div></div></div>
+ <p class="rnote">Pasa el cursor por encima para detener el carrusel.</p>
 </section>
 <section class="fan">
  <div class="wrap g">
   <div>
    <h2>Cuando el maquillaje se convierte en personaje.</h2>
-   <p class="lede">Formación en fantasía y caracterización, y semanas de trabajo detrás de cada pieza: vestuario, tocado, maquillaje y peluquería pensados como un todo.</p>
+   <p class="lede">Formación especializada en fantasía y caracterización, y semanas de trabajo detrás de cada pieza: vestuario, tocado, maquillaje y peluquería pensados como un todo.</p>
    <ul>
     <li>Caracterización de los personajes de la cabalgata de Reyes</li>
     <li>Fantasía con tocados de plumas y pedrería</li>
@@ -522,24 +576,24 @@ form .btn{justify-content:center}
 
 <section class="steps" id="visita-pasos">
  <div class="wrap">
-  <div class="sh"><h2 class="rv">Tu visita, paso a paso.</h2><p class="lede rv d1">Sin prisas y sin sorpresas. Así es una cita en Imatge.</p></div>
+  <div class="sh"><h2 class="rv">Tu visita, paso a paso.</h2><p class="lede rv d1">Un proceso claro, desde la reserva hasta el resultado final.</p></div>
   <div class="tl" id="tl"><span class="fillb" id="fb"></span>
-   <div class="st"><small>Paso 1</small><h3>Escríbenos</h3><p>Cuéntanos por mensaje qué te quieres hacer y te damos día y hora.</p><em>2 minutos</em></div>
-   <div class="st"><small>Paso 2</small><h3>Valoramos</h3><p>Frente al espejo vemos tu pelo o tu piel y acordamos el resultado y el precio.</p><em>10 minutos</em></div>
-   <div class="st"><small>Paso 3</small><h3>Te cuidamos</h3><p>Nos ponemos manos a la obra mientras tú te relajas.</p><em>Según el servicio</em></div>
-   <div class="st"><small>Paso 4</small><h3>Sigue en casa</h3><p>Te vas con consejos y, si quieres, los productos para mantener el resultado.</p><em>5 minutos</em></div>
+   <div class="st"><small>Paso 1</small><h3>Reserva</h3><p>Indícanos por mensaje el servicio que deseas y te proponemos día y hora.</p><em>2 minutos</em></div>
+   <div class="st"><small>Paso 2</small><h3>Diagnóstico</h3><p>Analizamos tu cabello o tu piel y acordamos contigo el resultado y el presupuesto.</p><em>10 minutos</em></div>
+   <div class="st"><small>Paso 3</small><h3>Servicio</h3><p>Realizamos el tratamiento en un entorno cuidado, con el tiempo que cada servicio requiere.</p><em>Según el servicio</em></div>
+   <div class="st"><small>Paso 4</small><h3>Mantenimiento</h3><p>Te damos las pautas y, si lo deseas, los productos para prolongar el resultado.</p><em>5 minutos</em></div>
   </div>
  </div>
 </section>
 <section class="arc" id="lookbook">
  <div class="pin">
-  <div class="cent"><h2>Recién salidas del salón.</h2><p class="lede">Baja despacio para ir pasando los últimos looks.</p><a class="btn fill" href="#reserva" style="margin-top:22px">Reservar mi look</a></div>
+  <div class="cent"><h2>Trabajos recientes.</h2><p class="lede">Desplázate para recorrer una selección de nuestros últimos looks.</p><a class="btn fill" href="#reserva" style="margin-top:22px">Reservar mi look</a></div>
   <div class="ring" id="ring"><figure><img src="nuria.jpg" alt=""></figure><figure><img src="invitada2.jpg" alt=""></figure><figure><img src="fantasia.jpg" alt=""></figure><figure><img src="invitada1.jpg" alt=""></figure><figure><img src="invitada3.jpg" alt=""></figure><figure><img src="fantasia2.jpg" alt=""></figure><figure><img src="invitada4.jpg" alt=""></figure><figure><img src="cabalgata.jpg" alt=""></figure><figure><img src="nuria.jpg" alt=""></figure><figure><img src="invitada2.jpg" alt=""></figure><figure><img src="fantasia.jpg" alt=""></figure><figure><img src="invitada1.jpg" alt=""></figure><figure><img src="invitada3.jpg" alt=""></figure><figure><img src="fantasia2.jpg" alt=""></figure><figure><img src="invitada4.jpg" alt=""></figure><figure><img src="cabalgata.jpg" alt=""></figure></div>
  </div>
 </section>
 <section class="shop" id="tienda">
  <div class="wrap">
-  <div class="shoph"><h2 class="rv">La tienda de Imatge.</h2><p class="lede rv d1">Lo que usamos en cabina y los detalles que tenemos en el salón, ahora también para comprar online y recoger en Paiporta.</p></div>
+  <div class="shoph"><h2 class="rv">La tienda de Imatge.</h2><p class="lede rv d1">La cosmética profesional que utilizamos en cabina y una selección de fragancias y accesorios, disponibles para reservar online y recoger en el estudio.</p></div>
   <div class="chips" role="group" aria-label="Filtrar productos">
    <button class="tab" aria-pressed="true" data-f="all">Todo</button>
    <button class="tab" aria-pressed="false" data-f="piel">Cuidado de la piel</button>
@@ -557,28 +611,28 @@ form .btn{justify-content:center}
     <span class="tg">Perfume árabe</span></div><div class="bd"><h3>Ámbar y vainilla</h3><p>Eau de parfum · cálido, dulce y de larga duración</p><div class="row"><span class="pr">35,00 €</span><button class="add" data-n="Perfume Ámbar y vainilla" data-p="35">Añadir</button></div></div></article>
    <article class="prod" data-c="perf"><div class="ph" style="background:linear-gradient(160deg,#fff0f4,#f1bfcd)">
     <svg viewBox="0 0 120 150" aria-hidden="true"><rect x="52" y="10" width="16" height="22" rx="4" fill="#e2738f"/><path d="M40 34h40l8 20v78a8 8 0 0 1-8 8H40a8 8 0 0 1-8-8V54Z" fill="#fff8fa" opacity=".9"/><path d="M36 90h48v42a6 6 0 0 1-6 6H42a6 6 0 0 1-6-6Z" fill="#f1bfcd"/><circle cx="60" cy="72" r="9" fill="none" stroke="#b98f55" stroke-width="2"/></svg>
-    <span class="tg">Perfume árabe</span></div><div class="bd"><h3>Almizcle blanco</h3><p>Body mist · limpio, suave y muy femenino</p><div class="row"><span class="pr">19,90 €</span><button class="add" data-n="Almizcle blanco" data-p="19.90">Añadir</button></div></div></article>
+    <span class="tg">Perfume árabe</span></div><div class="bd"><h3>Almizcle blanco</h3><p>Body mist · fragancia limpia, suave y envolvente</p><div class="row"><span class="pr">19,90 €</span><button class="add" data-n="Almizcle blanco" data-p="19.90">Añadir</button></div></div></article>
    <article class="prod" data-c="acc"><div class="ph" style="background:linear-gradient(160deg,#fde8ee,#f6cbd6)">
     <svg viewBox="0 0 120 120" aria-hidden="true"><path d="M60 56C46 30 14 26 16 50s32 18 44 6Z" fill="#e2738f"/><path d="M60 56c14-26 46-30 44-6S72 68 60 56Z" fill="#e2738f"/><path d="M58 58 42 104h12l6-22 6 22h12L62 58Z" fill="#c9536f"/><circle cx="60" cy="57" r="8" fill="#c9536f"/></svg>
     <span class="tg">Accesorios</span></div><div class="bd"><h3>Lazo de satén</h3><p>Pinza con lazo para recogidos y semirecogidos</p><div class="row"><span class="pr">8,50 €</span><button class="add" data-n="Lazo de satén" data-p="8.50">Añadir</button></div></div></article>
    <article class="prod" data-c="acc"><div class="ph" style="background:var(--berry)">
     <svg viewBox="0 0 140 100" aria-hidden="true"><rect x="10" y="14" width="120" height="72" rx="10" fill="#f9e4ea"/><text x="70" y="56" text-anchor="middle" font-family="Script" font-size="30" fill="#4b1d2d">Imatge</text><path d="M10 66h120" stroke="#e2738f" stroke-width="4"/></svg>
-    <span class="tg">Regalo</span></div><div class="bd"><h3>Tarjeta regalo</h3><p>Para un tratamiento, un maquillaje o lo que ella elija</p><div class="row"><span class="pr">desde 25 €</span><button class="add" data-n="Tarjeta regalo" data-p="25">Añadir</button></div></div></article>
-   <article class="prod" data-c="piel"><div class="ph"><img src="labios.jpg" alt="Exfoliante de labios"><span class="tg">Labios</span></div><div class="bd"><h3>Exfoliante de labios</h3><p>Azúcar y aceites para unos labios suaves</p><div class="row"><span class="pr">12,90 €</span><button class="add" data-n="Exfoliante de labios" data-p="12.90">Añadir</button></div></div></article>
+    <span class="tg">Regalo</span></div><div class="bd"><h3>Tarjeta regalo</h3><p>Válida para cualquier tratamiento o servicio del estudio</p><div class="row"><span class="pr">desde 25 €</span><button class="add" data-n="Tarjeta regalo" data-p="25">Añadir</button></div></div></article>
+   <article class="prod" data-c="piel"><div class="ph"><img src="labios.jpg" alt="Exfoliante de labios"><span class="tg">Labios</span></div><div class="bd"><h3>Exfoliante de labios</h3><p>Azúcar y aceites nutritivos para unos labios suaves</p><div class="row"><span class="pr">12,90 €</span><button class="add" data-n="Exfoliante de labios" data-p="12.90">Añadir</button></div></div></article>
   </div>
-  <p class="note">Tienda de ejemplo para la propuesta: productos y precios orientativos. El pedido se confirma por mensaje y se recoge en el salón.</p>
+  <p class="note">Tienda de ejemplo para la propuesta: productos y precios orientativos. El pedido se confirma por mensaje y se recoge en el estudio.</p>
  </div>
 </section>
 
 <section class="faq" id="faq">
  <div class="wrap g">
-  <div><h2 class="rv">Preguntas frecuentes.</h2><p class="lede rv d1" style="margin:18px 0 26px">¿No encuentras lo que buscas? Escríbenos y te respondemos.</p><a class="btn line rv d2" href="https://ig.me/m/imatge.salonn">Escribir al salón</a></div>
+  <div><h2 class="rv">Preguntas frecuentes.</h2><p class="lede rv d1" style="margin:18px 0 26px">¿Tienes otra consulta? Escríbenos y te atenderemos personalmente.</p><a class="btn line rv d2" href="https://ig.me/m/imatge.salonn">Contactar con el estudio</a></div>
   <div id="faql">
    <div class="q on"><button aria-expanded="true">¿Cómo pido cita?<i>+</i></button><div class="a"><div><p>Por mensaje directo en Instagram o con el formulario de esta web. Te respondemos con día y hora disponibles.</p></div></div></div>
-   <div class="q"><button aria-expanded="false">¿Hacéis maquillaje y peinado a la vez?<i>+</i></button><div class="a"><div><p>Sí. Para bodas, galas falleras y eventos lo más cómodo es reservar los dos servicios juntos y salir lista de una vez.</p></div></div></div>
-   <div class="q"><button aria-expanded="false">¿Con cuánta antelación reservo para un evento?<i>+</i></button><div class="a"><div><p>Para fechas señaladas, como bodas o la semana fallera, te recomendamos reservar con dos o tres semanas de margen.</p></div></div></div>
-   <div class="q"><button aria-expanded="false">¿Qué tratamiento facial me conviene?<i>+</i></button><div class="a"><div><p>Depende de tu piel. En la primera visita la valoramos y te recomendamos el tratamiento más adecuado, sea Glass Skin, Dermapen u otro.</p></div></div></div>
-   <div class="q"><button aria-expanded="false">¿Tenéis servicios para niñas?<i>+</i></button><div class="a"><div><p>Sí, el spa capilar junior, un ratito de relax pensado para las más pequeñas.</p></div></div></div>
+   <div class="q"><button aria-expanded="false">¿Hacéis maquillaje y peinado a la vez?<i>+</i></button><div class="a"><div><p>Sí. Para bodas, galas falleras y eventos recomendamos reservar ambos servicios en la misma cita para llegar al evento completamente preparada.</p></div></div></div>
+   <div class="q"><button aria-expanded="false">¿Con cuánta antelación reservo para un evento?<i>+</i></button><div class="a"><div><p>Para fechas señaladas, como bodas o la semana fallera, recomendamos reservar con dos o tres semanas de antelación.</p></div></div></div>
+   <div class="q"><button aria-expanded="false">¿Qué tratamiento facial me conviene?<i>+</i></button><div class="a"><div><p>Depende de tu piel. En la primera visita realizamos un diagnóstico y te recomendamos el protocolo más adecuado: Glass Skin, Dermapen u otro tratamiento.</p></div></div></div>
+   <div class="q"><button aria-expanded="false">¿Ofrecéis servicios infantiles?<i>+</i></button><div class="a"><div><p>Sí. El spa capilar junior es un tratamiento suave, adaptado al cabello infantil.</p></div></div></div>
   </div>
  </div>
 </section>
@@ -586,20 +640,20 @@ form .btn{justify-content:center}
  <div class="wrap g">
   <div>
    <h2 class="rv">Reserva tu cita.</h2>
-   <p class="lede rv d1">Rellena la solicitud y te preparamos el mensaje para enviarlo por Instagram. Te confirmamos día y hora.</p>
+   <p class="lede rv d1">Completa la solicitud y prepararemos el mensaje para enviarlo por Instagram. Te confirmaremos día y hora.</p>
    <div class="info rv d2">
     <div><small>Dónde estamos</small><a href="https://www.google.com/maps/search/?api=1&query=Calle+Catarroja+13+Paiporta">C/ Catarroja, 13 · 46200 Paiporta</a></div>
-    <div><small>Peluquería y estética</small><a href="https://instagram.com/imatge.salonn">@imatge.salonn</a></div>
+    <div><small>Peluquería, tratamientos y estética</small><a href="https://instagram.com/imatge.salonn">@imatge.salonn</a></div>
     <div><small>Maquillaje</small><a href="https://instagram.com/imatge.makeup">@imatge.makeup</a></div>
    </div>
   </div>
   <form id="form" novalidate class="rv d1">
    <label>Nombre *<input name="nombre" autocomplete="name" required></label>
    <label>Teléfono *<input name="tel" type="tel" autocomplete="tel" required></label>
-   <label>Servicio *<select name="servicio" required><option value="">Elige un servicio</option><option>Peluquería</option><option>Tratamiento capilar</option><option>Estética facial</option><option>Maquillaje</option><option>Maquillaje y peinado</option><option>Cejas</option><option>Uñas</option><option>Fantasía o caracterización</option></select></label>
+   <label>Servicio *<select name="servicio" required><option value="">Elige un servicio</option><option>Peluquería y peinados</option><option>Tratamientos capilares</option><option>Estética facial</option><option>Maquillaje</option><option>Maquillaje y peinado</option><option>Cejas y pestañas</option><option>Manicura</option><option>Fantasía o caracterización</option></select></label>
    <label>Fecha preferida<input name="fecha" type="date"></label>
    <label class="full">¿Algo que debamos saber?<textarea name="nota" rows="3" placeholder="Ocasión, hora a la que tienes que estar lista, alergias…"></textarea></label>
-   <p class="err" id="err">Rellena tu nombre, teléfono y el servicio que quieres.</p>
+   <p class="err" id="err">Indica tu nombre, teléfono y el servicio que deseas.</p>
    <div class="sent" id="sent"></div>
    <button class="btn fill full" type="submit">Preparar mi solicitud</button>
   </form>
@@ -612,7 +666,7 @@ form .btn{justify-content:center}
 <aside class="bag" id="bag" aria-label="Tu bolsa" aria-hidden="true">
  <header><h3>Tu bolsa</h3><button class="x" id="bagx" aria-label="Cerrar bolsa">✕</button></header>
  <ul id="bagl"></ul>
- <footer><div class="tot"><span>Total</span><span id="bagt">0,00 €</span></div><a class="btn fill" id="bago" href="https://ig.me/m/imatge.salonn">Enviar pedido por mensaje</a><small>Pagas y recoges en el salón</small></footer>
+ <footer><div class="tot"><span>Total</span><span id="bagt">0,00 €</span></div><a class="btn fill" id="bago" href="https://ig.me/m/imatge.salonn">Enviar pedido por mensaje</a><small>Pago y recogida en el estudio</small></footer>
 </aside>
 
 <script>
@@ -634,7 +688,8 @@ const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
  function u(){const r=p.getBoundingClientRect();const k=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.35)));const n=Math.round(k*ws.length);ws.forEach((w,i)=>w.classList.toggle('lit',RM||i<n))}
  addEventListener('scroll',u,{passive:true});u()})();
 // tabs
-document.querySelectorAll('[role=tab]').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('[role=tab]').forEach(x=>x.setAttribute('aria-selected',x===t));document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==t.dataset.p)}));
+function openTab(id,go){const t=document.querySelector('[role=tab][data-p="'+id+'"]');if(!t)return;document.querySelectorAll('[role=tab]').forEach(x=>x.setAttribute('aria-selected',x===t));document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==id);if(go){const y=document.querySelector('#servicios .tabs').getBoundingClientRect().top+scrollY-(innerWidth<900?96:120);scrollTo({top:y,behavior:RM?'auto':'smooth'})}}
+document.querySelectorAll('[role=tab]').forEach(t=>t.addEventListener('click',()=>openTab(t.dataset.p)));
 
 // shop filter
 document.querySelectorAll('[data-f]').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('[data-f]').forEach(x=>x.setAttribute('aria-pressed',x===c));document.querySelectorAll('.prod').forEach(p=>p.hidden=!(c.dataset.f==='all'||p.dataset.c===c.dataset.f))}));
@@ -655,16 +710,16 @@ render();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.rv').forEach(e=>io.observe(e));
 // hero top card
-(function(){const D=[['melena.jpg','Enzimoterapia capilar','Melena lisa y con brillo'],['facial.jpg','Glass Skin','Novedad en cabina'],['invitada2.jpg','Maquillaje de invitada','Con o sin recogido'],['unas_milky.jpg','Manicura Milky Pink','El tono de la temporada'],['melena_rosa.jpg','Spa capilar junior','Para las más peques']];
- let i=0,t;const im=document.getElementById('ti'),tt=document.getElementById('tt'),ts=document.getElementById('ts'),bar=document.getElementById('tb');
- function show(n){i=(n+D.length)%D.length;[im,tt,ts].forEach(e=>e.style.opacity=0);setTimeout(()=>{im.src=D[i][0];tt.textContent=D[i][1];ts.textContent=D[i][2];[im,tt,ts].forEach(e=>e.style.opacity=1)},250);bar.classList.remove('run');void bar.offsetWidth;if(!RM)bar.classList.add('run');clearTimeout(t);if(!RM)t=setTimeout(()=>show(i+1),4200)}
+(function(){const D=[['melena.jpg','Enzimoterapia capilar','Tratamientos capilares','p2'],['invitada4.jpg','Recogidos de evento','Peluquería y peinados','p1'],['facial.jpg','Glass Skin','Estética facial · novedad','p3'],['invitada2.jpg','Maquillaje de invitada','Maquillaje','p4'],['unas_milky.jpg','Manicura Milky Pink','Cejas y uñas','p5']];
+ let i=0,t;const im=document.getElementById('ti'),tt=document.getElementById('tt'),ts=document.getElementById('ts'),bar=document.getElementById('tb'),tc=document.getElementById('tc');tc.addEventListener('click',e=>{e.preventDefault();openTab(tc.dataset.tab,1)});
+ function show(n){i=(n+D.length)%D.length;[im,tt,ts].forEach(e=>e.style.opacity=0);setTimeout(()=>{im.src=D[i][0];tt.textContent=D[i][1];ts.textContent=D[i][2];tc.dataset.tab=D[i][3];[im,tt,ts].forEach(e=>e.style.opacity=1)},250);bar.classList.remove('run');void bar.offsetWidth;if(!RM)bar.classList.add('run');clearTimeout(t);if(!RM)t=setTimeout(()=>show(i+1),4200)}
  document.getElementById('tn').onclick=()=>show(i+1);document.getElementById('tp').onclick=()=>show(i-1);show(0)})();
 // expand gallery
-document.querySelectorAll('#xg a').forEach(a=>{const on=()=>{document.querySelectorAll('#xg a').forEach(x=>x.classList.remove('on'));a.classList.add('on')};a.addEventListener('mouseenter',on);a.addEventListener('focus',on);a.addEventListener('click',e=>{if(!a.classList.contains('on')){e.preventDefault();on()}})});
+document.querySelectorAll('#xg a').forEach(a=>{const on=()=>{document.querySelectorAll('#xg a').forEach(x=>x.classList.remove('on'));a.classList.add('on')};a.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')on()});a.addEventListener('focus',on);a.addEventListener('click',e=>{e.preventDefault();if(!a.classList.contains('on')){on();return}openTab(a.dataset.tab,1)})});
 // occasions
 (function(){const O=[['invitada2.jpg','Invitada de boda','Ojos ahumados suaves, piel luminosa y un recogido bajo con mechones sueltos. Elegante y favorecedor de la ceremonia al baile.','Maquillaje y recogido','Bodas, comuniones y bautizos','Con 2–3 semanas de antelación'],
- ['nuria.jpg','Cena de gala fallera','Piel perfecta para las fotos, mirada definida y ondas con volumen. Lista para lucir la noche de la gala.','Maquillaje y peluquería','Galas, cenas y actos falleros','Antes de la semana fallera'],
- ['invitada1.jpg','Proclamación','Un maquillaje muy especial para un día lleno de emoción: luminoso, duradero y con ondas al agua.','Maquillaje y ondas','Proclamaciones y nombramientos','Con 2–3 semanas de antelación'],
+ ['nuria.jpg','Cena de gala fallera','Piel perfecta para las fotos, mirada definida y ondas con volumen. Pensado para lucir impecable durante toda la gala.','Maquillaje y peluquería','Galas, cenas y actos falleros','Antes de la semana fallera'],
+ ['invitada1.jpg','Proclamación','Un maquillaje luminoso y de larga duración para un día de gran emoción, acompañado de ondas al agua.','Maquillaje y ondas','Proclamaciones y nombramientos','Con 2–3 semanas de antelación'],
  ['fantasia.jpg','Fantasía','Piel en acabado luminoso, ojos en tonos cálidos y dorados y labios suaves, con tocado de plumas.','Maquillaje de fantasía','Carnaval, teatro y sesiones de fotos','Cuéntanos tu proyecto']];
  const st=document.getElementById('stage'),det=document.getElementById('det');
  document.querySelectorAll('#ol button').forEach(b=>b.addEventListener('click',()=>{const o=O[+b.dataset.i];document.querySelectorAll('#ol button').forEach(x=>x.setAttribute('aria-pressed',x===b));
